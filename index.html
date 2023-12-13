@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width,initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="Buttons">
+      <h4>Metallic :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="1"
+        value="0,5"
+        class="slider"
+        id="metallicRange"
+        step="0.01"
+      />
+      <span>1</span>
+      <p>Your input : <span id="metallicOutput"></span></p>
+
+      <h4>Roughness :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="1"
+        value="0,5"
+        class="slider"
+        id="roughnessRange"
+        step="0.1"
+      />
+      <span>1</span>
+      <p>Your input : <span id="roughnessOutput"></span></p>
+
+      <h4>Ambient Occlusion :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="1"
+        value="0,5"
+        class="slider"
+        id="ambientOcclusionRange"
+        step="0.1"
+      />
+      <span>1</span>
+      <p>Your input : <span id="ambientOcclusionOutput"></span></p>
+    </div>
+
+    <button onclick="colorPicking(entity,colors.purple)">
+      "Purple" button
+    </button>
+    <button
+      onclick="colorPicking(SDK3DVerse.engineAPI.findEntitiesByNames('Teapot'), colors.orange)"
+    >
+      "Orange" Button
+    </button>
+
+    <div class="canvas-container">
+      <!-- CANVAS -->
+      <canvas
+        id="display-canvas"
+        tabindex="1"
+        oncontextmenu="event.preventDefault()"
+      ></canvas>
+    </div>
+    <div class="button-container">
+      <button id="btn-toggle-rotateLeft" onclick="toggleRotateLeft()"></button>
+      <button id="btn-toggle-light" onclick="toggleLight()"></button>
+    </div>
+
+    <!-- SDK 3DVERSE -->
+    <script src="https://cdn.3dverse.com/legacy/sdk/stable/SDK3DVerse.js"></script>
+
+    <!-- APP ENTRYPOINT -->
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>
