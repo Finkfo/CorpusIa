@@ -1,161 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta content="width=device-width,initial-scale=1.0" name="viewport" />
     <style>
-      .canvas-container {
-        width: 100vw;
-        height: 100vh;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        position: relative;
-      }
+        .canvas-container {
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
     </style>
-  </head>
-  <body>
-
-    <!-- bouton de selection de couleur -->
-    <!-- SDK3DVerse.engineAPI.findEntities('Teapot')     --> 
+</head>
+<body>
 
     <div class="Buttons">
         <h4>Metallic : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0,5" class="slider" id="metallicRange" step="0.01"> <span>1</span>
+        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="metallicRange" step="0.01"> <span>1</span>
         <p>Your input : <span id="metallicOutput"></span></p>
 
         <h4>Roughness : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0,5" class="slider" id="roughnessRange" step="0.1"> <span>1</span>
+        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="roughnessRange" step="0.1"> <span>1</span>
         <p>Your input : <span id="roughnessOutput"></span></p>
 
         <h4>Ambient Occlusion : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0,5" class="slider" id="ambientOcclusionRange" step="0.1"> <span>1</span>
+        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="ambientOcclusionRange" step="0.1"> <span>1</span>
         <p>Your input : <span id="ambientOcclusionOutput"></span></p>
-      </div>
+    </div>
 
     <script>
-        //Script pour la modification de la roughness 
-        var roughnessSlider = document.getElementById("roughnessRange");
-        var roughness = document.getElementById("roughnessOutput");
-        var roughnessValue; //variable pour stocker la valeur de la roughness
-        roughnessValue = parseFloat(roughnessSlider.value); //parseFloat utilisé pour convertir la valeur 'string' obtenu par le input range en 'float'
-        roughness.innerHTML = roughnessValue;
+        // Reusable function for setting up sliders
+        function setupSlider(sliderId, outputId) {
+            var slider = document.getElementById(sliderId);
+            var output = document.getElementById(outputId);
+            var value;
 
-          // Mise à jour de la valeur affichée à chaque modification
-          roughnessSlider.oninput = function() {
-            roughnessValue = parseFloat(this.value);
-            roughness.innerHTML = roughnessValue;
-            console.log("roughnessValue : ",roughnessValue); //affichage de la value dans la console pour chaque modification
-          }
+            // Initialize value and set initial HTML
+            value = parseFloat(slider.value);
+            output.innerHTML = value;
 
-          //Script pour la modification de la metallic 
+            // Update the displayed value on slider input
+            slider.oninput = function () {
+                value = parseFloat(this.value);
+                output.innerHTML = value;
+                console.log(`${outputId} Value: `, value);
+            }
+            return {
+                getValue: function () {
+                    return value;
+                }
+            };
+        }
 
-          var metallicSlider = document.getElementById("metallicRange");
-          var metallic = document.getElementById("metallicOutput");
-          var metallicValue;
-          metallicValue = parseFloat(metallicSlider.value); //parseFloat utilisé pour convertir la valeur 'string' obtenu par le input range en 'float'
-          metallic.innerHTML = metallicValue;
+        // Setup each slider using the reusable function
+        var metallicSlider = setupSlider("metallicRange", "metallicOutput");
+        var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
+        var ambientOcclusionSlider = setupSlider("ambientOcclusionRange", "ambientOcclusionOutput");
+    </script>
 
-          // Mise à jour de la valeur affichée à chaque modification
-          metallicSlider.oninput = function() {
-            metallicValue = parseFloat(this.value);
-            metallic.innerHTML = metallicValue;
-            console.log("metallicValue : ", metallicValue);  //affichage de la value dans la console pour chaque modification
-          }
-
-          //Script pour la modification de l'ambientOcclusion 
-
-          var ambientOcclusionSlider = document.getElementById("ambientOcclusionRange");
-          var ambientOcclusion = document.getElementById("ambientOcclusionOutput");
-          var ambientOcclusionValue;
-          ambientOcclusionValue = parseFloat(ambientOcclusionSlider.value); //parseFloat utilisé pour convertir la valeur 'string' obtenu par le input range en 'float'
-          ambientOcclusion.innerHTML = ambientOcclusionValue;
-
-          // Mise à jour de la valeur affichée à chaque modification
-          ambientOcclusionSlider.oninput = function() {
-            ambientOcclusionValue = parseFloat(this.value);
-            ambientOcclusion.innerHTML = ambientOcclusionValue;
-            console.log("ambientOcclusionValue : ", ambientOcclusionValue);  //affichage de la value dans la console pour chaque modification
-          }
-          </script>
-
-    <button onclick="colorPicking(entity,colors.purple)">"Purple" button</button>
-    <button onclick="colorPicking(SDK3DVerse.engineAPI.findEntitiesByNames('Teapot'), colors.orange)">"Orange" Button</button>
+    <button onclick="colorPicking(colors.purple)">"Purple" button</button>
+    <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
 
     <div class="canvas-container">
-      <!-- CANVAS -->
-      <canvas id="display-canvas" oncontextmenu="event.preventDefault()"></canvas>
+        <!-- CANVAS -->
+        <canvas id="display-canvas" oncontextmenu="event.preventDefault()"></canvas>
     </div>
+
     <!-- LIVELINK SDK -->
     <script src="https://cdn.3dverse.com/legacy/sdk/latest/SDK3DVerse.js"></script>
 
     <script>
-        // const entitie = SDK3DVerse.engineAPI.findEntitiesByUEID('f4e3cfcd-a0f9-41e7-a8bc-2e562ff1f9ba');
         const entities = SDK3DVerse.engineAPI.findEntitiesByNames('Teapot');
-        console.log(entities);
 
-      //Entity selection
-      async function selectEntity(event) {
-        const keepOldSelection = event.ctrlKey;
-        const { entity } = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY, true, keepOldSelection);
-        
-        if (entity) {
-          console.log('Selected entity', entity.getName());
-          //changement de couleur
-        //   colorPicking(entity, colors.purple);
-            entity.setComponent('material', {dataJSON:{
-                albedo : colors.red,
-                metallic : metallicValue,
-                roughness : roughnessValue,
-                ambientOcclusion : ambientOcclusionValue,
-            }});
-            console.log(entity.getComponent('material'));
-        } else {
-          console.log('No entity selected');
+        const colors = {red: [255, 0, 0],green: [0, 255, 0],blue: [0, 0, 255], orange: [255, 165, 0],purple: [255, 0, 255],};
+
+        // Entity selection
+        async function selectEntity(event) {
+            const keepOldSelection = event.ctrlKey;
+            const { entity } = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY, true, keepOldSelection);
+
+            if (entity) {
+                console.log('Selected entity', entity.getName());
+                desc(entity);
+            } else {
+                console.log('No entity selected');
+            }
         }
-      }
 
-      // Définition des couleurs au niveau global pour y accéder dans toutes les fonctions
-      const colors = {
-        red: [255, 0, 0],
-        green: [0, 255, 0],
-        blue: [0, 0, 255],
-        orange: [255, 165, 0],
-        purple: [255, 0, 255],
-      };
+        // Function to modify color called in the color buttons
+        async function colorPicking(color){
+          return colorPicked = color;
+          console.log(colorPicked);
+        }
 
-      //fonction de modification de couleur, avec entitée et couleur en argument
-      async function colorPicking(entity, color){
-        entity.setComponent('material', { 
-          dataJSON : {
-            albedo : color,
-          }
-        })
+        async function ARM(entity){
+          entity.setComponent('material', {
+            dataJSON : {
+              metallic: metallicSlider.getValue(),
+              roughness: roughnessSlider.getValue(),
+              ambientOcclusion: ambientOcclusionSlider.getValue(),
+            }
+          });
+          console.log(entity.getComponent('material'));
         };
 
-      async function InitApp() {
-        await SDK3DVerse.joinOrStartSession({
-          // Paramètres de session
-          userToken: "public_MP5wxRDATTlIeygo",
-          sceneUUID: "fdc3e279-0279-4cac-bfdf-86646d7d6902",
-          canvas: document.getElementById("display-canvas"),
-          viewportProperties: {
-            defaultControllerType: SDK3DVerse.controller_type.editor,
-          },
-          connectToEditor: true,
-        });
+        async function desc(entity){
+          entity.setComponent('material', {
+            dataJSON : {
+              albedo : colorPicked,
+              metallic: metallicSlider.getValue(),
+              roughness: roughnessSlider.getValue(),
+              ambientOcclusion: ambientOcclusionSlider.getValue(),
+            }
+          })
+        }
 
-        // Gestionnaire d'événements pour la sélection d'entité
-        SDK3DVerse.notifier.on('onEntitySelectionChanged', (selectedEntities, unselectedEntities) => {
-          console.log('Selected', selectedEntities);
-          console.log('Unselected', unselectedEntities);
-        });
+        // Initialization
+        async function InitApp() {
+            await SDK3DVerse.joinOrStartSession({
+                userToken: "public_MP5wxRDATTlIeygo",
+                sceneUUID: "fdc3e279-0279-4cac-bfdf-86646d7d6902",
+                canvas: document.getElementById("display-canvas"),
+                viewportProperties: {
+                    defaultControllerType: SDK3DVerse.controller_type.editor,
+                },
+                connectToEditor: true,
+            });
 
-        // Ajout du gestionnaire d'événements de clic au canvas
-        document.getElementById("display-canvas").addEventListener('click', selectEntity);
-      }
+            SDK3DVerse.notifier.on('onEntitySelectionChanged', (selectedEntities, unselectedEntities) => {
+                console.log('Selected', selectedEntities);
+                console.log('Unselected', unselectedEntities);
+            });
 
-      window.addEventListener("load", InitApp);
+            document.getElementById("display-canvas").addEventListener('click', selectEntity);
+        }
+
+        window.addEventListener("load", InitApp);
     </script>
-  </body>
+</body>
 </html>
