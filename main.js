@@ -8,79 +8,14 @@ let btnToggleRotateLeft;
 let btnToggleLight;
 let rotationOn = null;
 
-async function initApp() {
-  // btnToggleScene = document.getElementById("btn-toggle-scene");
-  btnToggleLight = document.getElementById("btn-toggle-light");
-  btnToggleRotateLeft = document.getElementById("btn-toggle-rotateLeft");
-  // btnToggleScene.innerText = "Spawn Scene";
-  btnToggleLight.innerText = "Spawn Light";
-  btnToggleRotateLeft.innerText = "Start Rotation";
-
-  const isSessionCreator = await SDK3DVerse.joinOrStartSession({
-    userToken: "public_xhZv-SrH0o7c9Xhz",
-    sceneUUID: "17fc8919-6b02-4835-a21c-8f67bafb94ca",
-    canvas: document.getElementById("display-canvas"),
-    viewportProperties: {
-      defaultControllerType: SDK3DVerse.controller_type.orbit,
-    },
-  });
-
-  // Set camera settings to make the light entities more visible
-  const cameraEntity = SDK3DVerse.engineAPI.cameraAPI
-    .getActiveViewports()[0]
-    .getCamera();
-  cameraEntity.setComponent("camera", {
-    dataJSON: {
-      // Disable reflection
-      reflection: false,
-      debugLines: true,
-      skybox: false,
-      atmosphere: false,
-      gradient: true,
-    },
-  });
-
-  // Set bottom gradient to black (top is white)
-  SDK3DVerse.engineAPI.propagateSceneSettings({
-    environment: { ambientColorBottom: [0, 0, 0] },
-  });
-
-  // Spawn a light otherwise the cube is dark due to its 100% metalness.
-  // But do it a single time for the whole session life time.
-
-  //Gestionnaire d'évènement
-  SDK3DVerse.notifier.on(
-    "OnEntitySelectionChanged",
-    (selectedEntities, unselectedEntities) => {
-      console.log("Selected", selectedEntities);
-      console.log("Unselected", unselectedEntities);
-    }
-  );
-
-  //Ajout du gestionnaire d'évènements de clic au canvas
-  document
-    .getElementById("display-canvas")
-    .addEventListener("click", selectEntity);
-
-  if (isSessionCreator) {
-    const pointLightComponentValue = {
-      color: [1, 1, 1],
-      intensity: 500,
-      range: 0,
-      isDirectional: false,
-      isSun: false,
-    };
-    const transform = {
-      position: [3, 3, 3],
-      orientation: SDK3DVerse.utils.quaternionFromEuler([-30, 45, 0]),
-    };
-    const options = {
-      deleteOnClientDisconnection: false,
-      cutoff: 80,
-    };
-    spawnLight(pointLightComponentValue, transform, options);
-  }
-}
+// Définition des couleurs au niveau global pour y accéder dans toutes les fonctions
+const colors = {
+  red: [255, 0, 0],
+  green: [0, 255, 0],
+  blue: [0, 0, 255],
+  orange: [255, 165, 0],
+  purple: [255, 0, 255],
+};
 
 const spawnLight = async function (
   pointLightComponentValue,
@@ -162,6 +97,7 @@ window.toggleRotateLeft = async function () {
 btnToggleRotate.addEventListener("click", toggleRotateLeft);
 
 //EntitySelection
+//Entity selection
 async function selectEntity(event) {
   const keepOldSelection = event.ctrlKey;
   const { entity } = await SDK3DVerse.engineAPI.castScreenSpaceRay(
@@ -177,10 +113,10 @@ async function selectEntity(event) {
     //   colorPicking(entity, colors.purple);
     entity.setComponent("material", {
       dataJSON: {
-        albedo: colors.red,
-        metallic: metallicValue,
-        roughness: roughnessValue,
-        ambientOcclusion: ambientOcclusionValue,
+        albedo: colors.blue,
+        metallic: 1,
+        roughness: 1,
+        ambientOcclusion: 1,
       },
     });
     console.log(entity.getComponent("material"));
@@ -189,14 +125,7 @@ async function selectEntity(event) {
   }
 }
 
-const colors = {
-  red: [255, 0, 0],
-  green: [0, 255, 0],
-  blue: [0, 0, 255],
-  orange: [255, 165, 0],
-  purple: [255, 0, 255],
-};
-
+//fonction de modification de couleur, avec entitée et couleur en argument
 async function colorPicking(entity, color) {
   entity.setComponent("material", {
     dataJSON: {
@@ -248,3 +177,77 @@ ambientOcclusionSlider.oninput = function () {
   ambientOcclusion.innerHTML = ambientOcclusionValue;
   console.log("ambientOcclusionValue : ", ambientOcclusionValue); //affichage de la value dans la console pour chaque modification
 };
+
+async function initApp() {
+  // btnToggleScene = document.getElementById("btn-toggle-scene");
+  btnToggleLight = document.getElementById("btn-toggle-light");
+  btnToggleRotateLeft = document.getElementById("btn-toggle-rotateLeft");
+  // btnToggleScene.innerText = "Spawn Scene";
+  btnToggleLight.innerText = "Spawn Light";
+  btnToggleRotateLeft.innerText = "Start Rotation";
+
+  const isSessionCreator = await SDK3DVerse.joinOrStartSession({
+    userToken: "public_xhZv-SrH0o7c9Xhz",
+    sceneUUID: "17fc8919-6b02-4835-a21c-8f67bafb94ca",
+    canvas: document.getElementById("display-canvas"),
+    viewportProperties: {
+      defaultControllerType: SDK3DVerse.controller_type.orbit,
+    },
+  });
+
+  // Set camera settings to make the light entities more visible
+  const cameraEntity = SDK3DVerse.engineAPI.cameraAPI
+    .getActiveViewports()[0]
+    .getCamera();
+  cameraEntity.setComponent("camera", {
+    dataJSON: {
+      // Disable reflection
+      reflection: false,
+      debugLines: true,
+      skybox: false,
+      atmosphere: false,
+      gradient: true,
+    },
+  });
+
+  // Set bottom gradient to black (top is white)
+  SDK3DVerse.engineAPI.propagateSceneSettings({
+    environment: { ambientColorBottom: [0, 0, 0] },
+  });
+
+  // Spawn a light otherwise the cube is dark due to its 100% metalness.
+  // But do it a single time for the whole session life time.
+
+  //Gestionnaire d'évènement
+  SDK3DVerse.notifier.on(
+    "OnEntitySelectionChanged",
+    (selectedEntities, unselectedEntities) => {
+      console.log("Selected", selectedEntities);
+      console.log("Unselected", unselectedEntities);
+    }
+  );
+
+  //Ajout du gestionnaire d'évènements de clic au canvas
+  document
+    .getElementById("display-canvas")
+    .addEventListener("click", selectEntity);
+
+  if (isSessionCreator) {
+    const pointLightComponentValue = {
+      color: [1, 1, 1],
+      intensity: 500,
+      range: 0,
+      isDirectional: false,
+      isSun: false,
+    };
+    const transform = {
+      position: [3, 3, 3],
+      orientation: SDK3DVerse.utils.quaternionFromEuler([-30, 45, 0]),
+    };
+    const options = {
+      deleteOnClientDisconnection: false,
+      cutoff: 80,
+    };
+    spawnLight(pointLightComponentValue, transform, options);
+  }
+}
