@@ -23,7 +23,7 @@ import {
 function App() {
   return <Router>
     <Routes>
-      <Route exact path="/UIX">
+      <Route exact path="/">
         <Viewer />
       </Route>
     </Routes>

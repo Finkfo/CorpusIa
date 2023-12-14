@@ -1,7 +1,9 @@
-import './style/viewer.css';
 
 function UIX() {
-    return <UIX>
+    return <div>
+    <h1>UIX</h1>
+
+
     <div class='bar'>
         <svg xmlns="http://www.w3.org/2000/svg" width="1401" height="73" viewBox="0 0 1401 73" fill="none">
             <path d="M0 4V0H1401V73H384C379 73 375.5 71 373 69L300 9C293 3.5 289.5 4 280 4H0Z" fill="#FCFCFC" />
@@ -23,6 +25,7 @@ function UIX() {
         </div>;
 
     </div>
-    </UIX>
-}
+    </div>
+};
+
 export default UIX;
