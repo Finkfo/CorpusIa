@@ -1,0 +1,51 @@
+/* BOUTON HOME et BACK*/
+.home_back_button {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* BOUTON HOME */
+.home_button button {
+    display: flex;
+    width: 46px;
+    height: 46px;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 64px;
+    background: var(--Primary-1, #6100FF);
+    box-shadow: 0px 4px 100px 0px rgba(218, 220, 245, 0.30);
+}
+
+.home_button #home {
+    fill: var(--Secondary-2, #FCFCFC);
+    stroke-width: 0.25px;
+    stroke: var(--Secondary-2, #FCFCFC);
+}
+
+/* BOUTON BACK */
+.back_button button {
+    display: flex;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 25px;
+    background: var(--Primary-1, #6100FF);
+}
+
+.back_button h5 {
+    color: var(--Secondary-2, #FCFCFC);
+    font-family: Azo Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.back_button #arrow_back {
+    fill: var(--Secondary-2, #FCFCFC);
+    stroke-width: 0.2px;
+    stroke: var(--Secondary-2, #FCFCFC);
+}
