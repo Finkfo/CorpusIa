@@ -21,20 +21,22 @@
 
 /* NAVBAR */
 .navbar_viewer {
-    padding: 40px 12px 12px 40px;
+    padding: 40px 14px 14px 40px;
+    display: flex;
 }
 
 /* BAR */
 
+
 /* BOUTON HOME et BACK*/
-.home_back_button {
-    display: inline-flex;
-    align-items: flex-start;
+.navbar_viewer .home_back_button {
     gap: 20px;
+    display: flex;
 }
 
+
 /* BOUTON HOME */
-.home_button {
+.navbar_viewer .home_button {
     display: flex;
     width: 46px;
     height: 46px;
@@ -43,17 +45,12 @@
     align-items: center;
     border-radius: 64px;
     background: var(--Primary-1, #6100FF);
-    box-shadow: 0px 4px 100px 0px rgba(218, 220, 245, 0.30);
+    box-shadow: 0px 10px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
-.home_button #home {
-    fill: var(--Secondary-2, #FCFCFC);
-    stroke-width: 0.25px;
-    stroke: var(--Secondary-2, #FCFCFC);
-}
 
 /* BOUTON BACK */
-.back_button {
+.navbar_viewer .back_button {
     display: flex;
     width: 161px;
     height: 46px;
@@ -64,18 +61,20 @@
     background: var(--Primary-1, #6100FF);
 }
 
-.back_button h5 {
+.navbar_viewer .back_button h5 {
     color: var(--Secondary-2, #FCFCFC);
-    /* leading-trim: both;
-    text-edge: cap; */
     font-family: 'Azo Sans';
     font-size: 20px;
     margin-top: 12px;
     line-height: normal;
 }
 
-.back_button #arrow_back {
-    fill: var(--Secondary-2, #FCFCFC);
-    stroke-width: 0.2px;
-    stroke: var(--Secondary-2, #FCFCFC);
+
+/* MODEL NAME */
+.navbar_viewer h2 {
+    color: var(--Secondary-4, #0F0F0F);
+    font-family: Azo Sans;
+    font-size: 30px;
+    line-height: normal;
+    text-align: center;
 }

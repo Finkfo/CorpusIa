@@ -2,9 +2,10 @@ import "./style/viewer.css";
 
 function UIX() {
     return <div>
-        <div class='screen_bar'>
-            <img src='/src/components/viewer/img/top_bar.png' alt="top bar" />
-        </div>
+
+        {/* <div class='screen_bar'>
+            <img src='/img/top_bar>png' alt="top bar" />
+        </div> */}
 
         <div class='navbar_viewer'>
             <div class='home_back_button'>
@@ -20,7 +21,7 @@ function UIX() {
                     </svg>
                 </div>
             </div>
-
+            <h2>Nom du model</h2>
         </div>
     </div>
 }
