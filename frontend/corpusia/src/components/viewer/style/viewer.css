@@ -19,6 +19,13 @@
     src: url(../../global/fonts/futura-pt-light.otf) format("opentype");
 }
 
+/* NAVBAR */
+/* .navbar_viewer{
+    margin-left: 40px;
+    margin-right: 40px;
+} */
+
+/* BAR */
 
 /* BOUTON HOME et BACK*/
 .home_back_button {
@@ -32,7 +39,7 @@
     display: flex;
     width: 46px;
     height: 46px;
-    padding: 24px;
+    padding: 12px;
     justify-content: center;
     align-items: center;
     border-radius: 64px;
@@ -49,7 +56,8 @@
 /* BOUTON BACK */
 .back_button {
     display: flex;
-    padding: 16px 32px;
+    width: 161px;
+    height: 46px;
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -59,10 +67,11 @@
 
 .back_button h5 {
     color: var(--Secondary-2, #FCFCFC);
-    font-family: Azo Sans;
+    /* leading-trim: both;
+    text-edge: cap; */
+    font-family: 'Azo Sans';
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
+    margin-top: 12px;
     line-height: normal;
 }
 
