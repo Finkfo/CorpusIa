@@ -28,7 +28,7 @@
 }
 
 /* BOUTON HOME */
-.home_button button {
+.home_button {
     display: flex;
     width: 46px;
     height: 46px;
@@ -47,7 +47,7 @@
 }
 
 /* BOUTON BACK */
-.back_button button {
+.back_button {
     display: flex;
     padding: 16px 32px;
     justify-content: center;
