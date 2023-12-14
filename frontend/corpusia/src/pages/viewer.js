@@ -1,4 +1,4 @@
-import UIX from '../components/viewer/UIX.js'
+import UIX from '../components/viewer/UIX'
 
 function Viewer(){
     return <div>

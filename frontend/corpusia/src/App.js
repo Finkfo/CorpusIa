@@ -12,21 +12,22 @@
 // export default App;
 
 import React from 'react';
-import Viewer from './pages/viewer.js';
+import Viewer from './pages/viewer';
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   return <Router>
-    <Routes>
+    <Switch>
       <Route exact path="/">
         <Viewer />
       </Route>
-    </Routes>
+    </Switch>
   </Router>
 }
 
