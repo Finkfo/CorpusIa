@@ -20,10 +20,9 @@
 }
 
 /* NAVBAR */
-/* .navbar_viewer{
-    margin-left: 40px;
-    margin-right: 40px;
-} */
+.navbar_viewer {
+    padding: 40px 12px 12px 40px;
+}
 
 /* BAR */
 
