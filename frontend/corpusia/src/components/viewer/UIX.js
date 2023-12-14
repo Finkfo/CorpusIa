@@ -21,7 +21,9 @@ function UIX() {
                     </svg>
                 </div>
             </div>
-            <h2>Nom du model</h2>
+            <div class='model_name'>
+                <h2>Nom du model</h2>
+            </div>
         </div>
     </div>
 }

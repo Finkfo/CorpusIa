@@ -71,10 +71,13 @@
 
 
 /* MODEL NAME */
-.navbar_viewer h2 {
+.navbar_viewer .model_name {
     color: var(--Secondary-4, #0F0F0F);
     font-family: Azo Sans;
     font-size: 30px;
+    margin-top: 6px;
     line-height: normal;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
 }
