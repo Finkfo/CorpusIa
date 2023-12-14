@@ -1,4 +1,4 @@
-import './style/viewer.js';
+import './style/viewer.css';
 
 function UIX() {
     return <UIX>

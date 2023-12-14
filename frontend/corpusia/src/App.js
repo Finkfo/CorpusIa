@@ -12,22 +12,21 @@
 // export default App;
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import Viewer from './pages/viewer.js';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   return <Router>
-    <Switch>
-      <Route exact path="/Viewer">
+    <Routes>
+      <Route exact path="/UIX">
         <Viewer />
       </Route>
-    </Switch>
+    </Routes>
   </Router>
 }
 

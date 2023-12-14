@@ -1,8 +1,8 @@
-import UIX from '../components/UI-UX.js'
+import UIX from '../components/viewer/UIX.js'
 
 function Viewer(){
     return <div>
-        <UIX/>
+        <UIX />
     </div>
 }
 
