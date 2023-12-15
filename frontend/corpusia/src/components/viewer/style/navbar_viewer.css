@@ -19,14 +19,15 @@
     src: url(../../global/fonts/futura-pt-light.otf) format("opentype");
 }
 
+
+/* SCREEN BAR */
+
+
 /* NAVBAR */
 .navbar_viewer {
     padding: 40px 14px 14px 40px;
     display: flex;
 }
-
-/* BAR */
-
 
 /* BOUTON HOME et BACK*/
 .navbar_viewer .home_back_button {
@@ -45,7 +46,7 @@
     align-items: center;
     border-radius: 64px;
     background: var(--Primary-1, #6100FF);
-    box-shadow: 0px 10px 4px 0px rgba(218, 220, 245, 0.30);
+    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
 
@@ -59,6 +60,7 @@
     gap: 8px;
     border-radius: 25px;
     background: var(--Primary-1, #6100FF);
+    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
 .navbar_viewer .back_button h5 {
@@ -80,4 +82,43 @@
     align-items: center;
     justify-content: center;
     display: inline-flex;
+}
+
+
+/* CONNECTED USERS */
+.navbar_viewer .connected_users {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: -12px;
+}
+
+
+/* SHARE BUTTON */
+.navbar_viewer .share_button {
+    display: flex;
+    padding: 13px 31.002px;
+    height: 46px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 24.22px;
+    background: var(--Primary-1, #6100FF);
+    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
+}
+
+.navbar_viewer .share_button h5 {
+    color: var(--Secondary-2, #FCFCFC);
+    font-family: 'Azo Sans';
+    font-size: 20px;
+    margin-top: 12px;
+    line-height: normal;
+}
+
+
+/* PROFIL */
+.navbar_viewer .profil {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

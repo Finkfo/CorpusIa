@@ -1,8 +1,8 @@
-import UIX from '../components/viewer/UIX'
+import Navbar_viewer from '../components/viewer/navbar_viewer';
 
 function Viewer(){
     return <div>
-        <UIX />
+        <Navbar_viewer />
     </div>
 }
 
