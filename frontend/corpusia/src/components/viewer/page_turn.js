@@ -1,4 +1,4 @@
-import "./style/page_turn.css"
+import "./style/page_turn.css";
 
 function PageTurn() {
     return <div>
@@ -7,6 +7,7 @@ function PageTurn() {
             <img src='/img/top_bar.png' alt="top bar" />
             <img src='/img/qround_bar.png' alt="around bar" />
         </div>
+        
     </div>
 }
 
