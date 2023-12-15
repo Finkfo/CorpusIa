@@ -114,3 +114,15 @@ async function InitApp() {
 }
 
 window.addEventListener("load", InitApp);
+
+async function getSun(){
+    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("5bc1cb90-8afb-47ef-9278-77bb1e9b001d"))[0];
+    const { position, eulerOrientation } = sun.getGlobalTransform();
+    console.log(position, eulerOrientation );
+}
+
+async function setSunOrientationX(){
+    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("5bc1cb90-8afb-47ef-9278-77bb1e9b001d"))[0];
+    const { position, eulerOrientation } = sun.getGlobalTransform();
+    sun.setGlobalTransform(position, [0, eulerOrientation[1], eulerOrientation[2]]);
+}
