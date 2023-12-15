@@ -41,3 +41,13 @@
     border: 2px solid var(--Primary-1, #6100FF);
     background: var(--Secondary-2, #FCFCFC);
 }
+
+
+/* SETTINGS SLIDER */
+.slider .settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}

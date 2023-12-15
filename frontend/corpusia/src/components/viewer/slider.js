@@ -30,6 +30,12 @@ function Slider() {
                     </svg>
                 </div>
             </div>
+
+            <div class='settings'>
+                <div class='lines'>
+                    
+                </div>
+            </div>
         </div>
     </div>
 }
