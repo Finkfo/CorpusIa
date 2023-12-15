@@ -1,12 +1,7 @@
 import "./style/navbar_viewer.css";
 
-function Navbar_viewer() {
+function NavbarViewer() {
     return <div>
-
-        <div class='screen_bar'>
-            <img src='/img/top_bar.png' alt="top bar" />
-            <img src='/img/qround_bar.png' alt="around bar" />
-        </div>
 
         <div class='navbar_viewer'>
             <div class='home_back_button'>
@@ -46,4 +41,4 @@ function Navbar_viewer() {
     </div>
 }
 
-export default Navbar_viewer;
+export default NavbarViewer;

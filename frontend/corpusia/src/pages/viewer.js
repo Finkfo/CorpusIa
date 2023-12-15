@@ -1,8 +1,10 @@
-import Navbar_viewer from '../components/viewer/navbar_viewer';
+import NavbarViewer from '../components/viewer/navbar_viewer';
+import PageTurn from '../components/viewer/page_turn';
 
 function Viewer(){
     return <div>
-        <Navbar_viewer />
+        <PageTurn />
+        <NavbarViewer />
     </div>
 }
 

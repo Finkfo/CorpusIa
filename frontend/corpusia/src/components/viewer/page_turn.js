@@ -1,6 +1,6 @@
 import "./style/page_turn.css"
 
-function Page_turn() {
+function PageTurn() {
     return <div>
 
         <div class='screen_bar'>
@@ -10,4 +10,4 @@ function Page_turn() {
     </div>
 }
 
-export default Page_turn;
+export default PageTurn;
