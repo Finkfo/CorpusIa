@@ -21,12 +21,12 @@ function NavbarViewer() {
                 <h2>Nom du model</h2>
             </div>
             <div class='connected_users'>
-                <img src='/img/perso1.png' alt="user1" />
-                <img src='/img/perso2.png' alt="user2" />
-                <img src='/img/perso3.png' alt="user3" />
-                <img src='/img/perso4.png' alt="user4" />
-                <img src='/img/perso5.png' alt="user5" />
-                <img src='/img/USER.png' alt="users" />
+                <img src='https://ibb.co/X4nz7Gx' alt="user1" />
+                <img src='https://ibb.co/7CfMkKx' alt="user2" />
+                <img src='https://ibb.co/nmKyjtH' alt="user3" />
+                <img src='https://ibb.co/88sKw1G' alt="user4" />
+                <img src='https://ibb.co/7XkZxsb' alt="user5" />
+                <img src='https://ibb.co/3YJv7PM' alt="users" />
             </div>
             <div class='share_button'>
                 <h5>Share</h5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
@@ -35,7 +35,7 @@ function NavbarViewer() {
                 </svg>
             </div>
             <div class='profil'>
-                <img src='/img/perso5.png' alt="profil" />
+                <img src='https://ibb.co/7XkZxsb' alt="profil" />
             </div>
         </div>
     </div>
