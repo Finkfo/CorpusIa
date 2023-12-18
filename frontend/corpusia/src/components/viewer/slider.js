@@ -31,10 +31,8 @@ function Slider() {
                 </div>
             </div>
 
-            <div class='settings'>
-                <div class='lines'>
-                    
-                </div>
+            <div class='settings_pannel'>
+                <div class='line1'/>
             </div>
         </div>
     </div>

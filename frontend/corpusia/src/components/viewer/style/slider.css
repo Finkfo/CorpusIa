@@ -44,10 +44,16 @@
 
 
 /* SETTINGS SLIDER */
-.slider .settings {
+.slider .settings_pannel {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: stretch;
+}
+
+.slider .settings_pannel .line1 {
+    width: 329px;
+    height: 1px;
+    background: rgba(148, 148, 148, 0.50);
 }

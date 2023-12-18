@@ -25,9 +25,11 @@
 
 /* NAVBAR */
 .navbar_viewer {
-    padding: 40px 14px 14px 40px;
+    padding: 15px 14px 5px 40px;
     display: flex;
     justify-content: space-between;
+    background-image: url(../img/top-bar.png);
+    background-repeat: no-repeat;
 }
 
 /* LEFT PART */
@@ -101,7 +103,37 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: -12px;
+}
+
+#users{
+    z-index: 5;
+    position: absolute;
+}
+
+#perso5 {
+    z-index: 4;
+    position: relative;
+}
+
+#perso4 {
+    z-index: 3;
+    position: relative;
+
+}
+
+#perso3 {
+    z-index: 2;
+    position: relative;
+}
+
+#perso2 {
+    z-index: 1;
+    position: relative;
+}
+
+#perso1 {
+    z-index: 0;
+    position: relative;
 }
 
 
