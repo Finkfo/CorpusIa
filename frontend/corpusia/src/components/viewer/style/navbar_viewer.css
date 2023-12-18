@@ -27,10 +27,11 @@
 .navbar_viewer {
     padding: 40px 14px 14px 40px;
     display: flex;
+    justify-content: space-between;
 }
 
-/* BOUTON HOME et BACK*/
-.navbar_viewer .home_back_button {
+/* LEFT PART */
+.navbar_viewer .LEFT {
     gap: 20px;
     display: flex;
 }
@@ -71,6 +72,13 @@
     line-height: normal;
 }
 
+/* MIDDLE PART */
+
+.navbar_viewer .MIDDLE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* MODEL NAME */
 .navbar_viewer .model_name {
@@ -79,11 +87,14 @@
     font-size: 30px;
     margin-top: 6px;
     line-height: normal;
-    align-items: center;
-    justify-content: center;
-    display: inline-flex;
 }
 
+
+/* RIGHT PART */
+.navbar_viewer .RIGHT {
+    gap: 20px;
+    display: flex;
+}
 
 /* CONNECTED USERS */
 .navbar_viewer .connected_users {
