@@ -29,6 +29,7 @@ function setupSlider(sliderId, outputId) {
 var metallicSlider = setupSlider("metallicRange", "metallicOutput");
 var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
 var ambientOcclusionSlider = setupSlider("ambientOcclusionRange", "ambientOcclusionOutput");
+var sunXSlider = setupSlider("sunXRange", "sunXOutput");
 
 
 const colors = { red: [255, 0, 0], green: [0, 255, 0], blue: [0, 0, 255], orange: [255, 165, 0], purple: [255, 0, 255] };
@@ -116,13 +117,13 @@ async function InitApp() {
 window.addEventListener("load", InitApp);
 
 async function getSun(){
-    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("5bc1cb90-8afb-47ef-9278-77bb1e9b001d"))[0];
+    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
     const { position, eulerOrientation } = sun.getGlobalTransform();
     console.log(position, eulerOrientation );
 }
 
 async function setSunOrientationX(){
-    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("5bc1cb90-8afb-47ef-9278-77bb1e9b001d"))[0];
+    const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
     const { position, eulerOrientation } = sun.getGlobalTransform();
-    sun.setGlobalTransform(position, [0, eulerOrientation[1], eulerOrientation[2]]);
+    sun.setGlobalTransform(position, [eulerOrientation[sunXSlider.getValue()], eulerOrientation[1], eulerOrientation[2]]);
 }
