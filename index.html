@@ -178,7 +178,8 @@
 
       pickr.on("save", (...args) => {
         let color = args[0].toRGBA();
-        pickr.addSwatch(color);
+        console.log(color);
+        pickr.addSwatch(`rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`);
       });
     </script>
   </body>
