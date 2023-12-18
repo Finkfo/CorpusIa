@@ -33,12 +33,12 @@ function NavbarViewer() {
 
             <div class='RIGHT'>
                 <div class='connected_users'>
-                    <img src={perso1} alt="user1" />
-                    <img src={perso2} alt="user2" />
-                    <img src={perso3} alt="user3" />
-                    <img src={perso4} alt="user4" />
-                    <img src={perso5} alt="user5" />
-                    <img src={USER} alt="users" />
+                    <img src={perso1} id='perso1' alt="user1" />
+                    <img src={perso2} id='perso2' alt="user2" />
+                    <img src={perso3} id='perso3' alt="user3" />
+                    <img src={perso4} id='perso4' alt="user4" />
+                    <img src={perso5} id='perso5' alt="user5" />
+                    <img src={USER} id='users' alt="users" />
                 </div>
                 <div class='share_button'>
                     <h5>Share</h5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
