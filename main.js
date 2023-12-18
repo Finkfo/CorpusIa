@@ -3,7 +3,7 @@ var rotationOn = false;
 
 
 // Reusable function for setting up sliders
-function setupSlider(sliderId, outputId) {
+function setupSlider(sliderId, outputId, onChangeCallback) {
     var slider = document.getElementById(sliderId);
     var output = document.getElementById(outputId);
     var value;
@@ -17,6 +17,11 @@ function setupSlider(sliderId, outputId) {
         value = parseFloat(this.value);
         output.innerHTML = value;
         console.log(`${outputId} Value: `, value);
+        
+        // Call the callback if it exists
+        if(onChangeCallback) {
+            onChangeCallback(value);
+        }
     }
     return {
         getValue: function () {
@@ -29,10 +34,13 @@ function setupSlider(sliderId, outputId) {
 var metallicSlider = setupSlider("metallicRange", "metallicOutput");
 var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
 var ambientOcclusionSlider = setupSlider("ambientOcclusionRange", "ambientOcclusionOutput");
-var sunXSlider = setupSlider("sunXRange", "sunXOutput");
+
+var sunXSlider = setupSlider("sunXRange", "sunXOutput",setSunOrientation);
+var sunYSlider = setupSlider("sunYRange", "sunYOutput",setSunOrientation);
+var sunZSlider = setupSlider("sunZRange", "sunZOutput",setSunOrientation);
 
 
-const colors = { red: [255, 0, 0], green: [0, 255, 0], blue: [0, 0, 255], orange: [255, 165, 0], purple: [255, 0, 255] };
+const colors = { red: [255/255, 0, 0], green: [0, 255/255, 0], blue: [0, 0, 255/255], orange: [255/255, 165/255, 0], purple: [255/255, 0, 255/255] };
 
 
 async function toggleRotate(){
@@ -118,12 +126,18 @@ window.addEventListener("load", InitApp);
 
 async function getSun(){
     const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
-    const { position, eulerOrientation } = sun.getGlobalTransform();
-    console.log(position, eulerOrientation );
+    const {eulerOrientation} = sun.getGlobalTransform();
+    console.log(eulerOrientation);
 }
 
-async function setSunOrientationX(){
+async function setSunOrientation(){
     const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
-    const { position, eulerOrientation } = sun.getGlobalTransform();
-    sun.setGlobalTransform(position, [eulerOrientation[sunXSlider.getValue()], eulerOrientation[1], eulerOrientation[2]]);
+    sun.setGlobalTransform({
+        eulerOrientation : 
+        [
+            sunXSlider.getValue(),
+            sunYSlider.getValue(),
+            sunZSlider.getValue(),
+        ]
+    });
 }
