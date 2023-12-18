@@ -12,5 +12,18 @@ code {
     monospace;
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #FCFCFC;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #6100FF;
+  border-radius: 20px;
+}
+
 /* viewer page */
 
