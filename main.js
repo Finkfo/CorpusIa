@@ -1,5 +1,5 @@
 var rotationOn = false;
-
+var isDoubleSided = false;
 
 
 // Reusable function for setting up sliders
@@ -83,6 +83,15 @@ async function ARM(entity) {
     console.log(entity.getComponent('material'));
 }
 
+async function DoubleSided(){
+    if (isDoubleSided == true){
+        isDoubleSided = false;
+    }
+    else if (isDoubleSided == false){
+        isDoubleSided = true;
+    }
+}
+
 async function desc(entity) {
     entity.setComponent('material', {
         dataJSON: {
@@ -90,7 +99,9 @@ async function desc(entity) {
             metallic: metallicSlider.getValue(),
             roughness: roughnessSlider.getValue(),
             ambientOcclusion: ambientOcclusionSlider.getValue(),
-        }
+            
+        },
+        isDoubleSided : isDoubleSided,
     })
 }
 
