@@ -1,23 +1,25 @@
 /* PANNEL */
-.slider {
+.slider_part {
+    display: flex;
+    justify-content: right;
+}
+
+.slider_part .slider_elements {
     display: flex;
     width: 349px;
-    height: 868px;
     padding: 20px 10px;
     flex-direction: column;
     align-items: center;
-    justify-content: right;
     gap: 10px;
-    flex-shrink: 0;
 }
 
-.slider .top {
+.slider_part .top {
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.slider .top .left_function {
+.slider_part .top .left_function {
     display: flex;
     padding: 10px 40px 10px 50px;
     width: 118px;
@@ -29,7 +31,7 @@
     background: var(--Primary-1, #6100FF);
 }
 
-.slider .top .right_function {
+.slider_part .top .right_function {
     display: flex;
     padding: 10px 50px 10px 40px;
     width: 118px;
@@ -44,16 +46,47 @@
 
 
 /* SETTINGS SLIDER */
-.slider .settings_pannel {
+.slider_part .settings_pannel {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    align-self: stretch;
+    align-items: flex-start;
 }
 
-.slider .settings_pannel .line1 {
+.slider_part .settings_pannel .line1 {
     width: 329px;
     height: 1px;
     background: rgba(148, 148, 148, 0.50);
+}
+
+
+
+/* SLIDERS STYLE */
+.settings_pannel .slider {
+    width: 75%;
+    height: 15px;
+    border-radius: 20px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.settings_pannel .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+.settings_pannel .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
 }
