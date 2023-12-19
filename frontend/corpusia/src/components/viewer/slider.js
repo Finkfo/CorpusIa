@@ -1,16 +1,13 @@
 import "./style/slider.css";
 
-var slider = document.getElementById("metallicRange");
-var output = document.getElementById("metallicOutput");
-output.innerHTML = slider.value;
+// var slider = document.getElementById("metallicRange");
+// var output = document.getElementById("metallicOutput");
+// output.innerHTML = slider.value;
 
-var slider = document.getElementById("roughnessRange");
-var output = document.getElementById("roughnessOutput");
-output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
+// slider.oninput = function() {
+//   output.innerHTML = this.value;
+// }
 
 function Slider() {
     return <div>
