@@ -1,6 +1,16 @@
 var rotationOn = false;
+const colors = { red: [255 / 255, 0, 0], green: [0, 255 / 255, 0], blue: [0, 0, 255 / 255], orange: [255 / 255, 165 / 255, 0], purple: [255 / 255, 0, 255 / 255] };
 
+// Setup each slider using the reusable function
+var metallicSlider;
+var roughnessSlider;
+var ambientOcclusionSlider
 
+var sunXSlider;
+var sunYSlider;
+var sunZSlider;
+
+var colorPicked;
 
 // Reusable function for setting up sliders
 function setupSlider(sliderId, outputId, onChangeCallback) {
@@ -17,9 +27,9 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
         value = parseFloat(this.value);
         output.innerHTML = value;
         console.log(`${outputId} Value: `, value);
-        
+
         // Call the callback if it exists
-        if(onChangeCallback) {
+        if (onChangeCallback) {
             onChangeCallback(value);
         }
     }
@@ -30,34 +40,21 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
     };
 }
 
-// Setup each slider using the reusable function
-var metallicSlider = setupSlider("metallicRange", "metallicOutput");
-var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
-var ambientOcclusionSlider = setupSlider("ambientOcclusionRange", "ambientOcclusionOutput");
-
-var sunXSlider = setupSlider("sunXRange", "sunXOutput",setSunOrientation);
-var sunYSlider = setupSlider("sunYRange", "sunYOutput",setSunOrientation);
-var sunZSlider = setupSlider("sunZRange", "sunZOutput",setSunOrientation);
-
-
-const colors = { red: [255/255, 0, 0], green: [0, 255/255, 0], blue: [0, 0, 255/255], orange: [255/255, 165/255, 0], purple: [255/255, 0, 255/255] };
-
-
-async function toggleRotate(){
+async function toggleRotate() {
     rotationOn = !rotationOn; // Bascule l'état de la rotation
 
     if (rotationOn) {
-      // Démarrer l'animation de rotation
-      SDK3DVerse.engineAPI.playAnimationSequence(
-        "19895069-14e2-4bb5-bf23-d958ee630b1d" // Remplacez par l'UUID de votre séquence d'animation
-      );
-      btnToggleRotateLeft.innerText = "Stop Rotation";
+        // Démarrer l'animation de rotation
+        SDK3DVerse.engineAPI.playAnimationSequence(
+            "19895069-14e2-4bb5-bf23-d958ee630b1d" // Remplacez par l'UUID de votre séquence d'animation
+        );
+        btnToggleRotateLeft.innerText = "Stop Rotation";
     } else {
-      // Arrêter l'animation de rotation
-      SDK3DVerse.engineAPI.pauseAnimationSequence(
-        "19895069-14e2-4bb5-bf23-d958ee630b1d" // Remplacez par l'UUID de votre séquence d'animation
-      );
-      btnToggleRotateLeft.innerText = "Start Rotation";
+        // Arrêter l'animation de rotation
+        SDK3DVerse.engineAPI.pauseAnimationSequence(
+            "19895069-14e2-4bb5-bf23-d958ee630b1d" // Remplacez par l'UUID de votre séquence d'animation
+        );
+        btnToggleRotateLeft.innerText = "Start Rotation";
     }
 }
 
@@ -102,42 +99,20 @@ async function desc(entity) {
     })
 }
 
-// Initialization
-async function InitApp() {
-    await SDK3DVerse.joinOrStartSession({
-        userToken: "public_xhZv-SrH0o7c9Xhz",
-        sceneUUID: "17fc8919-6b02-4835-a21c-8f67bafb94ca",
-        canvas: document.getElementById("display-canvas"),
-        viewportProperties: {
-            defaultControllerType: SDK3DVerse.controller_type.orbit,
-        },
-        connectToEditor: true,
-    });
-
-    SDK3DVerse.notifier.on('onEntitySelectionChanged', (selectedEntities, unselectedEntities) => {
-        console.log('Selected', selectedEntities);
-        console.log('Unselected', unselectedEntities);
-    });
-
-    document.getElementById("display-canvas").addEventListener('click', selectEntity);
-}
-
-window.addEventListener("load", InitApp);
-
-async function getSun(){
+async function getSun() {
     const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
-    const {eulerOrientation} = sun.getGlobalTransform();
+    const { eulerOrientation } = sun.getGlobalTransform();
     console.log(eulerOrientation);
 }
 
-async function setSunOrientation(){
+async function setSunOrientation() {
     const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
     sun.setGlobalTransform({
-        eulerOrientation : 
-        [
-            sunXSlider.getValue(),
-            sunYSlider.getValue(),
-            sunZSlider.getValue(),
-        ]
+        eulerOrientation:
+            [
+                sunXSlider.getValue(),
+                sunYSlider.getValue(),
+                sunZSlider.getValue(),
+            ]
     });
 }

@@ -1,7 +1,16 @@
 import { useCallback, useEffect } from 'react';
 import { useScript } from '@uidotdev/usehooks';
 
+const {
+    setupSlider,
+    setSunOrientation,
+    selectEntity
+} = window;
+
+let SDK3DVerse = null;
+
 export const Canvas = () => {
+
     const status = useScript(
         `https://cdn.3dverse.com/legacy/sdk/latest/SDK3DVerse.js`,
         {
@@ -10,60 +19,57 @@ export const Canvas = () => {
     );
 
     const initApp = useCallback(async () => {
+        // Setup each slider using the reusable function
+        window.metallicSlider = setupSlider("metallicRange", "metallicOutput");
+        window.roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
+        window.ambientOcclusionSlider = setupSlider("ambientOcclusionRange", "ambientOcclusionOutput");
+
+        window.sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
+        window.sunYSlider = setupSlider("sunYRange", "sunYOutput", setSunOrientation);
+        window.sunZSlider = setupSlider("sunZRange", "sunZOutput", setSunOrientation);
+
         await SDK3DVerse.joinOrStartSession({
-            userToken: 'public_DGfD-aVaZJnRtTNO',
-            sceneUUID: '26711a8d-543d-4b1e-a618-ada41668bf78',
+            //userToken: 'public_DGfD-aVaZJnRtTNO',
+            //sceneUUID: '26711a8d-543d-4b1e-a618-ada41668bf78',
+            userToken: "public_xhZv-SrH0o7c9Xhz",
+            sceneUUID: "17fc8919-6b02-4835-a21c-8f67bafb94ca",
             canvas: document.getElementById('display-canvas'),
             viewportProperties: {
                 defaultControllerType: SDK3DVerse.controller_type.orbit,
             },
         });
+
+        SDK3DVerse.notifier.on('onEntitySelectionChanged', (selectedEntities, unselectedEntities) => {
+            console.log('Selected', selectedEntities);
+            console.log('Unselected', unselectedEntities);
+        });
+
+        document.getElementById("display-canvas").addEventListener('click', selectEntity);
     }, []);
 
     useEffect(() => {
         if (status === 'ready') {
+            SDK3DVerse = window.SDK3DVerse
             initApp();
         }
     }, [status]);
 
     return (
-        <div>
-            <div class="Buttons">
-                <h4>Metallic : </h4>
-                <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="metallicRange" step="0.01" /> <span>1</span>
-                <p>Your input : <span id="metallicOutput"></span></p>
-
-                <h4>Roughness : </h4>
-                <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="roughnessRange" step="0.1" /> <span>1</span>
-                <p>Your input : <span id="roughnessOutput"></span></p>
-
-                <h4>Ambient Occlusion : </h4>
-                <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="ambientOcclusionRange" step="0.1" /> <span>1</span>
-                <p>Your input : <span id="ambientOcclusionOutput"></span></p>
-            </div>
-
-            <button onclick="toggleRotate()">Rotate</button>
-            <button onclick="colorPicking(colors.purple)">"Purple" button</button>
-            <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
-
-
-            <div class="Set Sun">
-                <h4>Sun X Orientation :</h4>
-                <span>0</span><input type="range" min="0" max="360" value="240" class="slider" id="sunXRange" step="5" /> <span>360</span>
-                <p>Your input : <span id="sunXOutput"></span></p>
-                <h4>Sun Y Orientation :</h4>
-                <span>0</span><input type="range" min="0" max="360" value="0" class="slider" id="sunYRange" step="5" /> <span>360</span>
-                <p>Your input : <span id="sunYOutput"></span></p>
-                <h4>Sun Z Orientation :</h4>
-                <span>0</span><input type="range" min="0" max="360" value="0" class="slider" id="sunZRange" step="5" /> <span>360</span>
-                <p>Your input : <span id="sunZOutput"></span></p>
-                <button onclick="getSun()">Get Sun</button>
-            </div>
-            <div class="canvas-container">
-                {/* <!-- CANVAS --> */}
-                <canvas id="display-canvas" oncontextmenu="event.preventDefault()"></canvas>
-            </div>
-            tabIndex="1"
-        </div>
+        <>
+            {/* <!-- CANVAS --> */}
+            <canvas
+                id='display-canvas'
+                style={{
+                    height: '100vh',
+                    width: '100vw',
+                    verticalAlign: 'middle',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    zIndex: -1
+                }}
+                tabIndex="1"
+            ></canvas>
+        </>
     );
 };

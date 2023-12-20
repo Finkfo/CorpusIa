@@ -1,4 +1,5 @@
 import "./style/slider.css";
+import React, { useState } from 'react';
 import palette_full from './img/palette_full.svg';
 import palette_empty from './img/palette_empty.svg';
 import sun_full from './img/sun_full.svg';
@@ -8,14 +9,15 @@ var colorFunctions = true;
 var sunFunctions = false;
 
 function Slider() {
+
     if (colorFunctions === true) {
         return <div>
             <div class='slider_part'>
                 <div class='slider_elements'>
                     <div class='top'>
-                            <div class='left_function'>
-                                <img src={palette_full} alt="palette_full" />
-                            </div>
+                        <div class='left_function'>
+                            <img src={palette_full} alt="palette_full" />
+                        </div>
                         <div class='right_function'>
                             <img src={sun_empty} alt="sun_empty" />
                         </div>
@@ -63,15 +65,8 @@ function Slider() {
             </div>
         </div>
     }
-    if (onclick === sun_empty) {
-        sunFunctions = true;
-        colorFunctions = false;
-    }
 
-    if (onclick === palette_empty) {
-        sunFunctions = false;
-        colorFunctions = true;
-    }
+
 
     if (sunFunctions === true) {
         return <div>
@@ -105,7 +100,7 @@ function Slider() {
 
                         <button onclick="toggleRotate()">Rotate</button>
                         <button onclick="colorPicking(colors.purple)">"Purple" button</button>
-                        <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
+                        <button onclick={() => window.colorPicking(window.colors.orange)}>"Orange" Button</button>
 
 
                         <div class="sun_settings">
