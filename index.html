@@ -59,6 +59,56 @@
     </button>
     <button onclick="updateCamera('bloom')">Toggle Bloom</button>
 
+    <div class="Set Sun hidden">
+      <h4>Sun X Orientation :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="360"
+        value="240"
+        class="slider"
+        id="sunXRange"
+        step="5"
+      />
+      <span>360</span>
+      <p>Your input : <span id="sunXOutput"></span></p>
+
+      <!-- Ajoutez une classe "hidden" à ces éléments -->
+      <h4>Sun Y Orientation :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="360"
+        value="0"
+        class="slider hidden"
+        id="sunYRange"
+        step="5"
+      />
+      <span>360</span>
+      <p>Your input : <span id="sunYOutput"></span></p>
+
+      <h4>Sun Z Orientation :</h4>
+      <span>0</span
+      ><input
+        type="range"
+        min="0"
+        max="360"
+        value="0"
+        class="slider hidden"
+        id="sunZRange"
+        step="5"
+      />
+      <span>360</span>
+      <p>Your input : <span id="sunZOutput"></span></p>
+
+      <button onclick="getSun()" class="hidden">Get Sun</button>
+    </div>
+
+    <button onclick="updateCamera('gradient')">Activate Gradient</button>
+    <button onclick="setSunOrientation(true)">Activate Sun</button>
+
     <div class="canvas-container">
       <!-- CANVAS -->
       <canvas

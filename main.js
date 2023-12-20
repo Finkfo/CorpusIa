@@ -1,7 +1,7 @@
 var rotationOn = false;
 
 // Reusable function for setting up sliders
-function setupSlider(sliderId, outputId) {
+function setupSlider(sliderId, outputId, onChangeCallback) {
   var slider = document.getElementById(sliderId);
   var output = document.getElementById(outputId);
   var value;
@@ -15,6 +15,10 @@ function setupSlider(sliderId, outputId) {
     value = parseFloat(this.value);
     output.innerHTML = value;
     console.log(`${outputId} Value: `, value);
+
+    if (onChangeCallback) {
+      onChangeCallback(value);
+    }
   };
   return {
     getValue: function () {
@@ -30,6 +34,10 @@ var ambientOcclusionSlider = setupSlider(
   "ambientOcclusionRange",
   "ambientOcclusionOutput"
 );
+
+var sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
+var sunYSlider = setupSlider("sunYRange", "sunYOutput", setSunOrientation);
+var sunZSlider = setupSlider("sunZRange", "sunZOutput", setSunOrientation);
 
 const colors = {
   red: [255, 0, 0],
@@ -103,46 +111,88 @@ async function desc(entity) {
   });
 }
 
-function updateCamera(property) {
-  const componentFilter = {
-    mandatoryComponents: ["camera"],
-    forbiddenComponents: [],
-  };
+async function updateCamera(property) {
+  try {
+    const componentFilter = {
+      mandatoryComponents: ["camera"],
+      forbiddenComponents: [],
+    };
 
-  SDK3DVerse.engineAPI
-    .findEntitiesByComponents(componentFilter)
-    .then((entities) => {
+    const entities = await SDK3DVerse.engineAPI.findEntitiesByComponents(
+      componentFilter
+    );
+
+    if (entities[0].isAttached("camera")) {
       const cameraComponent = entities[0].getComponent("camera");
 
-      if (cameraComponent) {
-        cameraComponent.dataJSON[property] =
-          !cameraComponent.dataJSON[property];
-        entities[0].setComponent("camera", {
-          dataJSON: cameraComponent.dataJSON,
-        });
-        console.log(entities[0].getComponent("camera"));
+      if (property === "gradient") {
+        // Désactiver le soleil lorsque la propriété "gradient" est activée
+        await setSunOrientation(false);
+      } else {
+        // Désactiver la propriété "gradient" lorsque le soleil est activé
+        cameraComponent.dataJSON.gradient = false;
       }
-    });
+
+      cameraComponent.dataJSON[property] = !cameraComponent.dataJSON[property];
+      await entities[0].setComponent("camera", {
+        dataJSON: cameraComponent.dataJSON,
+      });
+      console.log(entities[0].getComponent("camera"));
+    }
+  } catch (error) {
+    console.error("Error updating camera:", error);
+  }
 }
 
-// async function setCamera() {
-//   const componentFilter = {
-//     mandatoryComponents: ["camera"],
-//     forbiddenComponents: [],
-//   };
-//   const entities = await SDK3DVerse.engineAPI.findEntitiesByComponents(
-//     componentFilter
-//   );
-//   entities[0].setComponent("camera", {
-//     dataJSON: {
-//       ...entities[0].getComponent("camera").dataJSON,
-//       sharpen: true,
-//       filterSpecular: true,
-//       bloom: true,
-//     },
-//   });
-//   console.log(entities[0].getComponent("camera"));
-// }
+async function getSun() {
+  const sun = (
+    await SDK3DVerse.engineAPI.findEntitiesByEUID(
+      "7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"
+    )
+  )[0];
+  const { eulerOrientation } = sun.getGlobalTransform();
+  console.log(eulerOrientation);
+}
+
+async function setSunOrientation(enableSun) {
+  const sunXRange = document.getElementById("sunXRange");
+  const sunYRange = document.getElementById("sunYRange");
+  const sunZRange = document.getElementById("sunZRange");
+  const getSunButton = document.getElementById("getSunButton");
+  const setSunDiv = document.querySelector(".Set.Sun");
+
+  const sun = (
+    await SDK3DVerse.engineAPI.findEntitiesByEUID(
+      "7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"
+    )
+  )[0];
+
+  if (enableSun) {
+    sun.setGlobalTransform({
+      eulerOrientation: [
+        sunXSlider.getValue(),
+        sunYSlider.getValue(),
+        sunZSlider.getValue(),
+      ],
+    });
+
+    setSunDiv.classList.remove("hidden");
+    sunXRange.classList.remove("hidden");
+    sunYRange.classList.remove("hidden");
+    sunZRange.classList.remove("hidden");
+    getSunButton.classList.remove("hidden");
+  } else {
+    sun.setGlobalTransform({
+      eulerOrientation: [0, 0, 0],
+    });
+
+    setSunDiv.classList.add("hidden");
+    sunXRange.classList.add("hidden");
+    sunYRange.classList.add("hidden");
+    sunZRange.classList.add("hidden");
+    getSunButton.classList.add("hidden");
+  }
+}
 
 // Initialization
 async function InitApp() {
