@@ -164,8 +164,8 @@ function Slider() {
     };
 
     const paletteEmptyClicked = () => {
-        setColorFunctions(false);
-        setSunFunctions(true);
+        setColorFunctions(true);
+        setSunFunctions(false);
     };
 
     return (
