@@ -27,7 +27,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="1"
         class="slider"
         id="roughnessRange"
         step="0.1"
@@ -41,7 +41,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="1"
         class="slider"
         id="ambientOcclusionRange"
         step="0.1"
@@ -51,15 +51,15 @@
     </div>
 
     <button onclick="toggleRotate()">Rotate</button>
-    <button onclick="colorPicking(colors.purple)">"Purple" button</button>
-    <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
     <button onclick="updateCamera('sharpen')">Toggle Sharpen</button>
     <button onclick="updateCamera('filterSpecular')">
       Toggle Filter Specular
     </button>
     <button onclick="updateCamera('bloom')">Toggle Bloom</button>
+    <button onclick="updateCamera('atmosphere')">Toggle Atmosphere</button>
+    <button onclick="updateCamera('gradient')">Toggle Gradient</button>
 
-    <div class="Set Sun hidden">
+    <div class="Set Sun ">
       <h4>Sun X Orientation :</h4>
       <span>0</span
       ><input
@@ -74,7 +74,7 @@
       <span>360</span>
       <p>Your input : <span id="sunXOutput"></span></p>
 
-      <!-- Ajoutez une classe "hidden" à ces éléments -->
+      <!-- Ajoutez une classe "" à ces éléments -->
       <h4>Sun Y Orientation :</h4>
       <span>0</span
       ><input
@@ -82,7 +82,7 @@
         min="0"
         max="360"
         value="0"
-        class="slider hidden"
+        class="slider "
         id="sunYRange"
         step="5"
       />
@@ -96,18 +96,15 @@
         min="0"
         max="360"
         value="0"
-        class="slider hidden"
+        class="slider "
         id="sunZRange"
         step="5"
       />
       <span>360</span>
       <p>Your input : <span id="sunZOutput"></span></p>
 
-      <button onclick="getSun()" class="hidden">Get Sun</button>
+      <button onclick="getSun()" class="">Get Sun</button>
     </div>
-
-    <button onclick="updateCamera('gradient')">Activate Gradient</button>
-    <button onclick="setSunOrientation(true)">Activate Sun</button>
 
     <div class="canvas-container">
       <!-- CANVAS -->
