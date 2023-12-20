@@ -34,29 +34,35 @@ var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
 
 var ambientOcclusionSlider = setupSlider(
   "ambientOcclusionRange",
-  "ambientOcclusionOutput"
+  "ambientOcclusionOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 var ambientOcclusionSlider = setupSlider(
   "ambientOcclusionRange",
-  "ambientOcclusionOutput"
+  "ambientOcclusionOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 var EmissionIntensitySlider = setupSlider(
   "EmissionIntensityRange",
-  "EmissionIntensityOutput"
+  "EmissionIntensityOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 var ClearCoatRoughnessSlider = setupSlider(
   "ClearCoatRoughnessRange",
-  "ClearCoatRoughnessOutput"
+  "ClearCoatRoughnessOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 
 var ClearCoatStrengthSlider = setupSlider(
   "ClearCoatStrengthRange",
-  "ClearCoatStrengthOutput"
+  "ClearCoatStrengthOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 
 var ClearCoatNormalTextScaleSlider = setupSlider(
   "ClearCoatNormalTextScaleRange",
-  "ClearCoatNormalTextScaleOutput"
+  "ClearCoatNormalTextScaleOutput",
+  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
 );
 
 var sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
@@ -172,6 +178,12 @@ async function setSunOrientation() {
       ]
   });
 }
+
+async function setSunVisibility(isVisible) {
+  const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
+  sun.setVisibility(isVisible);
+}
+
 
 // Initialization
 async function InitApp() {

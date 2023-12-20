@@ -104,8 +104,8 @@
       Toggle Filter Specular
     </button>
     <button onclick="updateCamera('bloom')">Toggle Bloom</button>
-    <button onclick="updateCamera('atmosphere')">Toggle Atmosphere</button>
-    <button onclick="updateCamera('gradient')">Toggle Gradient</button>
+    <button onclick="updateCamera('atmosphere'); setSunVisibility(true)">Toggle Atmosphere</button>
+    <button onclick="updateCamera('gradient'); setSunVisibility(false)">Toggle Gradient</button>
 
     <h4>Emission intensisty</h4>
       <span>0</span>
@@ -210,26 +210,23 @@
             hex: true,
             rgba: true,
             input: true,
-            clear: true,
             save: true,
           },
         },
       });
 
-      pickr.on("change", (...args) => {
+      pickr.on("change", async (...args) => {
         let color = args[0].toRGBA();
         let numericValues = color.map((value) => value / 255);
         this.colorPicked = numericValues;
+        const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))[0]
+        desc(entity)
       });
 
       pickr.on("save", (...args) => {
         let color = args[0].toRGBA();
         console.log(color);
         pickr.addSwatch(`rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`);
-      });
-
-      pickr.on("clear", (...args) => {
-        pickr.removeSwatch(1);
       });
     </script>
     
