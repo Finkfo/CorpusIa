@@ -22,7 +22,7 @@ function Slider() {
     };
 
     return (
-        <div>
+        <>
             <div className='slider_part'>
                 <div className='slider_elements'>
                     <div className='top'>
@@ -50,7 +50,7 @@ function Slider() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
