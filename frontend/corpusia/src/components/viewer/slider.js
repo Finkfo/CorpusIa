@@ -159,8 +159,8 @@ function Slider() {
     const [sunFunctions, setSunFunctions] = useState(false);
 
     const sunEmptyClicked = () => {
-        setColorFunctions(true);
-        setSunFunctions(false);
+        setColorFunctions(false);
+        setSunFunctions(true);
     };
 
     const paletteEmptyClicked = () => {
