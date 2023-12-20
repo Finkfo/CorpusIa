@@ -49,13 +49,6 @@ var ClearCoatNormalTextScaleSlider = setupSlider(
   "ClearCoatNormalTextScaleRange",
   "ClearCoatNormalTextScaleOutput"
 );
-const colors = {
-  red: [255, 0, 0],
-  green: [0, 255, 0],
-  blue: [0, 0, 255],
-  orange: [255, 165, 0],
-  purple: [255, 0, 255],
-};
 
 async function toggleRotate() {
   rotationOn = !rotationOn; // Bascule l'état de la rotation

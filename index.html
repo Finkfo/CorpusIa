@@ -32,7 +32,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="1"
         class="slider"
         id="roughnessRange"
         step="0.1"
@@ -46,7 +46,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="1"
         class="slider"
         id="ambientOcclusionRange"
         step="0.1"
@@ -62,7 +62,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="1"
         class="slider"
         id="EmissionIntensityRange"
         step="0.1"
@@ -76,7 +76,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="0"
         class="slider"
         id="ClearCoatRoughnessRange"
         step="0.1"
@@ -90,7 +90,7 @@
         type="range"
         min="0"
         max="1"
-        value="0.5"
+        value="0.2"
         class="slider"
         id="ClearCoatStrengthRange"
         step="0.1"
@@ -107,7 +107,7 @@
         value="0.5"
         class="slider"
         id="ClearCoatNormalTextScaleRange"
-        step="0.5"
+        step="1"
       />
       <span>1</span>
       <p>Your input : <span id="ClearCoatNormalTextScaleOutput"></span></p>
@@ -115,11 +115,9 @@
 
     <div class="color">
       <div class="colorButton">
-        <button onclick="colorPicking(colors.purple)">"Purple" button</button>
-        <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
         <button onclick="DoubleSided()">Double sided Button</button>
+        <div class="color-picker"></div>
       </div>
-      <div class="color-picker"></div>
     </div>
 
     <button onclick="toggleRotate()">Rotate</button>
@@ -143,11 +141,7 @@
         theme: "nano", // or 'monolith', or 'nano'
 
         swatches: [
-          "rgba(233, 30, 99, 0.95)",
-          "rgba(156, 39, 176, 0.9)",
-          "rgba(103, 58, 183, 0.85)",
-          "rgba(63, 81, 181, 0.8)",
-          "rgba(33, 150, 243, 0.75)",
+          "rgba(7, 192, 99, 0.95)",
         ],
 
         components: {
@@ -180,6 +174,10 @@
         let color = args[0].toRGBA();
         console.log(color);
         pickr.addSwatch(`rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`);
+      });
+
+      pickr.on("clear", (...args) => {
+        pickr.removeSwatch(1);
       });
     </script>
   </body>
