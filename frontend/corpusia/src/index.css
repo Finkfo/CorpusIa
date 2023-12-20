@@ -27,3 +27,6 @@ body::-webkit-scrollbar-thumb {
 
 /* viewer page */
 
+html {
+  zoom: 110%;
+}

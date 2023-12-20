@@ -25,28 +25,11 @@
 }
 
 .slider_part .top .left_function {
-    display: flex;
-    padding: 10px 40px 10px 50px;
-    width: 118px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 38px 0px 0px 38px;
-    background: var(--Primary-1, #6100FF);
+    margin: 0%;
 }
 
-.slider_part .top .right_function {
-    display: flex;
-    padding: 10px 50px 10px 40px;
-    width: 118px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 0px 38px 38px 0px;
-    border: 2px solid var(--Primary-1, #6100FF);
-    background: var(--Secondary-2, #FCFCFC);
+.slider_part .top .right_function_2 {
+    margin: 0%;
 }
 
 
