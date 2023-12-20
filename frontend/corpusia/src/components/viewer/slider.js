@@ -1,14 +1,5 @@
 import "./style/slider.css";
 
-// var slider = document.getElementById("metallicRange");
-// var output = document.getElementById("metallicOutput");
-// output.innerHTML = slider.value;
-
-
-// slider.oninput = function() {
-//   output.innerHTML = this.value;
-// }
-
 function Slider() {
     return <div>
         <div class='slider_part'>
