@@ -68,8 +68,8 @@ export const Canvas = () => {
                     left: 0,
                     zIndex: -1
                 }}
-                tabIndex="1"
-            ></canvas>
+                tabIndex="1">
+            </canvas>
         </>
     );
 };

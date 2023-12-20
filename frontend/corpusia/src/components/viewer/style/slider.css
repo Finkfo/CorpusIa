@@ -3,6 +3,8 @@
     display: flex;
     justify-content: right;
     z-index: 1;
+    position: relative;
+    padding: 20px;
 }
 
 .slider_part .slider_elements {

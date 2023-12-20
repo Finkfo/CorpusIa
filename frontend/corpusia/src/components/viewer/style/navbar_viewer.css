@@ -31,6 +31,7 @@
     background-image: url(../img/top-bar.png);
     background-repeat: no-repeat;
     z-index: 2;
+    position: relative;
 }
 
 /* LEFT PART */
@@ -50,7 +51,6 @@
     align-items: center;
     border-radius: 64px;
     background: var(--Primary-1, #6100FF);
-    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
 
@@ -64,7 +64,6 @@
     gap: 8px;
     border-radius: 25px;
     background: var(--Primary-1, #6100FF);
-    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
 .navbar_viewer .back_button h5 {
@@ -117,7 +116,6 @@
     gap: 7.75px;
     border-radius: 24.22px;
     background: var(--Primary-1, #6100FF);
-    box-shadow: 0px 5px 4px 0px rgba(218, 220, 245, 0.30);
 }
 
 .navbar_viewer .share_button h5 {
