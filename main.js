@@ -1,4 +1,5 @@
 var rotationOn = false;
+var isDoubleSided = false
 
 // Reusable function for setting up sliders
 function setupSlider(sliderId, outputId, onChangeCallback) {
@@ -30,22 +31,37 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
 // Setup each slider using the reusable function
 var metallicSlider = setupSlider("metallicRange", "metallicOutput");
 var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
+
 var ambientOcclusionSlider = setupSlider(
   "ambientOcclusionRange",
   "ambientOcclusionOutput"
+);
+var ambientOcclusionSlider = setupSlider(
+  "ambientOcclusionRange",
+  "ambientOcclusionOutput"
+);
+var EmissionIntensitySlider = setupSlider(
+  "EmissionIntensityRange",
+  "EmissionIntensityOutput"
+);
+var ClearCoatRoughnessSlider = setupSlider(
+  "ClearCoatRoughnessRange",
+  "ClearCoatRoughnessOutput"
+);
+
+var ClearCoatStrengthSlider = setupSlider(
+  "ClearCoatStrengthRange",
+  "ClearCoatStrengthOutput"
+);
+
+var ClearCoatNormalTextScaleSlider = setupSlider(
+  "ClearCoatNormalTextScaleRange",
+  "ClearCoatNormalTextScaleOutput"
 );
 
 var sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
 var sunYSlider = setupSlider("sunYRange", "sunYOutput", setSunOrientation);
 var sunZSlider = setupSlider("sunZRange", "sunZOutput", setSunOrientation);
-
-const colors = {
-  red: [255/255, 0, 0],
-  green: [0, 255/255, 0],
-  blue: [0, 0, 255/255],
-  orange: [255/255, 165/255, 0],
-  purple: [255/255, 0, 255/255],
-};
 
 async function toggleRotate() {
   rotationOn = !rotationOn; // Bascule l'état de la rotation
@@ -78,15 +94,10 @@ async function selectEntity(event) {
   if (entity) {
     console.log("Selected entity", entity.getName());
     desc(entity);
+    console.log(entity.getComponent("material"));
   } else {
     console.log("No entity selected");
   }
-}
-
-// Function to modify color called in the color buttons
-async function colorPicking(color) {
-  return (colorPicked = color);
-  console.log(colorPicked);
 }
 
 async function ARM(entity) {
@@ -100,6 +111,14 @@ async function ARM(entity) {
   console.log(entity.getComponent("material"));
 }
 
+async function DoubleSided() {
+  if (isDoubleSided == true) {
+    isDoubleSided = false;
+  } else if (isDoubleSided == false) {
+    isDoubleSided = true;
+  }
+}
+
 async function desc(entity) {
   entity.setComponent("material", {
     dataJSON: {
@@ -108,7 +127,12 @@ async function desc(entity) {
       metallic: metallicSlider.getValue(),
       roughness: roughnessSlider.getValue(),
       ambientOcclusion: ambientOcclusionSlider.getValue(),
+      emissionIntensity: EmissionIntensitySlider.getValue(),
+      clearCoatRoughness: ClearCoatRoughnessSlider.getValue(),
+      clearCoatStrength: ClearCoatStrengthSlider.getValue(),
+      clearCoatNormalTextScale: ClearCoatNormalTextScaleSlider.getValue(),
     },
+    isDoubleSided: isDoubleSided,
   });
 }
 
