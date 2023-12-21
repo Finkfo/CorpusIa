@@ -42,7 +42,7 @@
 
 
 /* BOUTON HOME */
-.navbar_viewer .home_button {
+.navbar_viewer .home_button button {
     display: flex;
     width: 46px;
     height: 46px;
@@ -51,11 +51,12 @@
     align-items: center;
     border-radius: 25px;
     background: var(--Primary-1, #6100FF);
+    border: none;
 }
 
 
 /* BOUTON BACK */
-.navbar_viewer .back_button {
+.navbar_viewer .back_button button{
     display: flex;
     width: 161px;
     height: 46px;
@@ -64,9 +65,10 @@
     gap: 8px;
     border-radius: 25px;
     background: var(--Primary-1, #6100FF);
+    border: none;
 }
 
-.navbar_viewer .back_button h5 {
+.navbar_viewer .back_button button h5 {
     color: var(--Secondary-2, #FCFCFC);
     font-family: 'Azo Sans';
     font-size: 20px;
@@ -107,7 +109,7 @@
 
 
 /* SHARE BUTTON */
-.navbar_viewer .share_button {
+.navbar_viewer .share_button button{
     display: flex;
     padding: 13px 31.002px;
     height: 46px;
@@ -116,9 +118,10 @@
     gap: 7.75px;
     border-radius: 24.22px;
     background: var(--Primary-1, #6100FF);
+    border: none;
 }
 
-.navbar_viewer .share_button h5 {
+.navbar_viewer .share_button button h5 {
     color: var(--Secondary-2, #FCFCFC);
     font-family: 'Azo Sans';
     font-size: 20px;
@@ -132,4 +135,5 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 46px;
 }

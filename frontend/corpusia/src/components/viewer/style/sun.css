@@ -1,7 +1,7 @@
 /* SUN SLIDER */
 .sun_settings .slider {
     -webkit-appearance: none;
-    width: 100%;
+    width: 80%;
     height: 10px;
     border-radius: 20px;
     background: #d3d3d3;
