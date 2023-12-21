@@ -18,7 +18,7 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
     console.log(`${outputId} Value: `, value);
 
     if (onChangeCallback) {
-      onChangeCallback(value);
+      onChangeCallback(sliderId, value);
     }
   };
   return {
@@ -28,42 +28,33 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
   };
 }
 
-// Setup each slider using the reusable function
-var metallicSlider = setupSlider("metallicRange", "metallicOutput");
-var roughnessSlider = setupSlider("roughnessRange", "roughnessOutput");
+async function setMaterialProperty(propertyName, propertyValue) {
+  const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))[0]
+  entity.setComponent("material", {
+    dataJSON: {
+      ...entity.getComponent("material").dataJSON,
+      [propertyName]: propertyValue,
+    },
+  });
+}
 
-var ambientOcclusionSlider = setupSlider(
-  "ambientOcclusionRange",
-  "ambientOcclusionOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
-);
-var ambientOcclusionSlider = setupSlider(
-  "ambientOcclusionRange",
-  "ambientOcclusionOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
-);
+// Setup each slider using the reusable function
+var metallicSlider = setupSlider("metallic", "metallicOutput", setMaterialProperty);
+var roughnessSlider = setupSlider("roughness", "roughnessOutput",setMaterialProperty);
+var ambientOcclusionSlider = setupSlider("ambientOcclusion","ambientOcclusionOutput",setMaterialProperty);
+
 var EmissionIntensitySlider = setupSlider(
-  "EmissionIntensityRange",
+  "emission",
   "EmissionIntensityOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
-);
-var ClearCoatRoughnessSlider = setupSlider(
-  "ClearCoatRoughnessRange",
-  "ClearCoatRoughnessOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
+  setMaterialProperty
 );
 
 var ClearCoatStrengthSlider = setupSlider(
-  "ClearCoatStrengthRange",
+  "clearCoatStrength",
   "ClearCoatStrengthOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
+  setMaterialProperty
 );
 
-var ClearCoatNormalTextScaleSlider = setupSlider(
-  "ClearCoatNormalTextScaleRange",
-  "ClearCoatNormalTextScaleOutput",
-  desc(SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))
-);
 
 var sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
 var sunYSlider = setupSlider("sunYRange", "sunYOutput", setSunOrientation);
@@ -99,7 +90,7 @@ async function selectEntity(event) {
 
   if (entity) {
     console.log("Selected entity", entity.getName());
-    desc(entity);
+    desc(entity); // Appel de la fonction desc avec l'entité sélectionnée en paramètre, a retirer pour du débugage uniquement le temps de trouver une solution 
     console.log(entity.getComponent("material"));
   } else {
     console.log("No entity selected");
@@ -146,6 +137,16 @@ async function updateCamera(property) {
 
     const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
     const camera = viewport.getCamera();
+
+
+    if( property === "gradient"){
+        camera.setComponent("camera", {
+            dataJSON: {
+              ...camera.getComponent("camera").dataJSON,
+              atmosphere: false,
+            },
+          });
+    }
 
     if (camera.isAttached("camera")) {
       const cameraComponent = camera.getComponent("camera");
