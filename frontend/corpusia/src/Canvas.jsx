@@ -52,7 +52,7 @@ export const Canvas = () => {
             SDK3DVerse = window.SDK3DVerse
             initApp();
         }
-    }, [status]);
+    }, [status, initApp]);
 
     return (
         <>
@@ -65,7 +65,7 @@ export const Canvas = () => {
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    zIndex: -1
+                    zIndex: 0,
                 }}
                 tabIndex="1">
             </canvas>

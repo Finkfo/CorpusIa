@@ -1,0 +1,54 @@
+.sun_settings .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 20px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.sun_settings .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--Primary-1, #6100FF);
+    cursor: pointer;
+}
+
+.sun_settings .slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--Primary-1, #6100FF);
+    cursor: pointer;
+}
+
+
+
+
+.sun_settings .button_settings {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sun_settings .button_settings button {
+    transition-duration: 0.4s;
+    background-color: #6100FF;
+    color: var(--Secondary-2, #FCFCFC);
+    border-radius: 20px;
+    border: none;
+    font-family: 'Azo Sans';
+    width: 90px;
+    height: 33px;
+}
+
+.sun_settings .button_settings button:hover {
+    background-color: #AA8DFA;
+    color: var(--Secondary-2, #FCFCFC);
+}

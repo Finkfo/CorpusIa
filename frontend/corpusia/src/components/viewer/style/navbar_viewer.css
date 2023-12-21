@@ -49,7 +49,7 @@
     padding: 12px;
     justify-content: center;
     align-items: center;
-    border-radius: 64px;
+    border-radius: 25px;
     background: var(--Primary-1, #6100FF);
 }
 
