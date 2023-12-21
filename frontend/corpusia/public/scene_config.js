@@ -14,6 +14,8 @@ var colorPicked;
 
 // Reusable function for setting up sliders
 function setupSlider(sliderId, outputId, onChangeCallback) {
+    console.log(sliderId);
+
     var slider = document.getElementById(sliderId);
     var output = document.getElementById(outputId);
     var value;
