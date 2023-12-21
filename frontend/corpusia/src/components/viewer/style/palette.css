@@ -19,7 +19,7 @@
     src: url(../../global/fonts/futura-pt-light.otf) format("opentype");
 }
 
-
+/* PALETTE SLIDER */
 .palette_settings .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -50,6 +50,8 @@
     cursor: pointer;
 }
 
+
+/* PALETTE SETTINGS BUTTON */
 .palette .button_settings {
     display: flex;
     justify-content: center;
