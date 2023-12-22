@@ -125,9 +125,7 @@ async function desc(entity) {
       roughness: roughnessSlider.getValue(),
       ambientOcclusion: ambientOcclusionSlider.getValue(),
       emissionIntensity: EmissionIntensitySlider.getValue(),
-      clearCoatRoughness: ClearCoatRoughnessSlider.getValue(),
       clearCoatStrength: ClearCoatStrengthSlider.getValue(),
-      clearCoatNormalTextScale: ClearCoatNormalTextScaleSlider.getValue(),
     },
     isDoubleSided: isDoubleSided,
   });
