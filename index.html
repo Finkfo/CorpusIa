@@ -1,38 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
 </head>
+
 <body>
 
-    <div class="Buttons">
-        <h4>Metallic : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="metallicRange" step="0.01"> <span>1</span>
-        <p>Your input : <span id="metallicOutput"></span></p>
+    <div class='navbar_viewer'>
+        <div class='LEFT'>
+            <div class='home_button'>
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                        id='home'>
+                        <path
+                            d="M9.96904 1.10663L9.96903 1.10664L1.10711 9.96723L1.1071 9.96724C1.03352 10.0408 0.975146 10.1282 0.935322 10.2243C0.895497 10.3205 0.875 10.4235 0.875 10.5276C0.875 10.6317 0.895497 10.7347 0.935322 10.8308C0.975146 10.927 1.03352 11.0143 1.1071 11.0879L1.19454 11.0005L1.1071 11.0879C1.25572 11.2365 1.45728 11.32 1.66745 11.32C1.77152 11.32 1.87457 11.2995 1.97071 11.2597C2.06686 11.2199 2.15421 11.1615 2.2278 11.0879L2.22787 11.0879L2.87567 10.4391V17.1937C2.87567 17.7572 3.09954 18.2977 3.49802 18.6962C3.89651 19.0947 4.43696 19.3185 5.00051 19.3185H16.9995C17.563 19.3185 18.1035 19.0947 18.502 18.6962C18.9005 18.2977 19.1243 17.7572 19.1243 17.1937V10.4391L19.7721 11.0879L19.7722 11.0879C19.9208 11.2365 20.1224 11.32 20.3325 11.32C20.5427 11.32 20.7443 11.2365 20.8929 11.0879C21.0415 10.9393 21.125 10.7378 21.125 10.5276C21.125 10.3174 21.0415 10.1158 20.8929 9.96724L20.8929 9.96722L17.7911 6.86676V2.52826C17.7911 2.31831 17.7077 2.11696 17.5592 1.9685C17.4108 1.82005 17.2094 1.73665 16.9995 1.73665H15.6663C15.4563 1.73665 15.255 1.82005 15.1065 1.9685C14.9581 2.11696 14.8747 2.31831 14.8747 2.52826V3.95034L12.031 1.10665L12.031 1.10663C11.7575 0.833261 11.3867 0.679688 11 0.679688C10.6133 0.679688 10.2425 0.833261 9.96904 1.10663ZM11 2.3144L17.5411 8.85551V17.1937C17.5411 17.3373 17.484 17.4751 17.3825 17.5767C17.2809 17.6782 17.1431 17.7353 16.9995 17.7353H5.00051C4.85686 17.7353 4.7191 17.6782 4.61753 17.5767C4.51596 17.4751 4.45889 17.3373 4.45889 17.1937V8.85551L11 2.3144Z"
+                            fill="#FCFCFC" stroke="#FCFCFC" strokeWidth="0.25" />
+                    </svg></button>
+            </div>
 
-        <h4>Roughness : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="roughnessRange" step="0.1"> <span>1</span>
-        <p>Your input : <span id="roughnessOutput"></span></p>
+            <div class='back_button'>
+                <button>
+                    <h5>Go Back</h5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                        <path fillRule="evenodd"
+                            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"
+                            fill="#FCFCFC" stroke="#FCFCFC" strokeWidth="0.25" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-        <h4>Ambient Occlusion : </h4>
-        <span>0</span><input type="range" min="0" max="1" value="0.5" class="slider" id="ambientOcclusionRange" step="0.1"> <span>1</span>
-        <p>Your input : <span id="ambientOcclusionOutput"></span></p>
+        <div class='MIDDLE'>
+            <div class='model_name'>
+                <h2>Nom du model</h2>
+            </div>
+        </div>
+
+        <div class='RIGHT'>
+            <div class='connected_users'>
+                <img src='./img/perso1.png' id='perso1' alt="user1" />
+                <img src='./img/perso2.png' id='perso2' alt="user2" />
+                <img src='./img/perso3.png' id='perso3' alt="user3" />
+                <img src='./img/perso4.png' id='perso4' alt="user4" />
+                <img src='./img/perso5.png' id='perso5' alt="user5" />
+                <img src='./img/USER.png' id='users' alt="users" />
+            </div>
+            <div class='share_button'>
+                <button>
+                    <h5>Share</h5><svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"
+                        fill="none">
+                        <path
+                            d="M8.62891 9.125C9.70635 9.125 10.7397 8.69699 11.5015 7.93512C12.2634 7.17325 12.6914 6.13994 12.6914 5.0625C12.6914 3.98506 12.2634 2.95175 11.5015 2.18988C10.7397 1.42801 9.70635 1 8.62891 1C7.55146 1 6.51815 1.42801 5.75629 2.18988C4.99442 2.95175 4.56641 3.98506 4.56641 5.0625C4.56641 6.13994 4.99442 7.17325 5.75629 7.93512C6.51815 8.69699 7.55146 9.125 8.62891 9.125ZM11.1289 5.0625C11.1289 5.72554 10.8655 6.36143 10.3967 6.83027C9.92783 7.29911 9.29195 7.5625 8.62891 7.5625C7.96587 7.5625 7.32998 7.29911 6.86114 6.83027C6.3923 6.36143 6.12891 5.72554 6.12891 5.0625C6.12891 4.39946 6.3923 3.76357 6.86114 3.29473C7.32998 2.82589 7.96587 2.5625 8.62891 2.5625C9.29195 2.5625 9.92783 2.82589 10.3967 3.29473C10.8655 3.76357 11.1289 4.39946 11.1289 5.0625ZM2.06641 16.875V17H15.1914V16.875C15.1914 17 15.1915 17 15.1915 17H15.1917L15.1921 17L15.1933 17L15.1972 16.9999L15.2103 16.9996C15.2214 16.9992 15.2371 16.9985 15.2567 16.9971C15.2959 16.9943 15.3511 16.9888 15.417 16.9778C15.5483 16.9559 15.7252 16.9119 15.9036 16.8227C16.0824 16.7333 16.2651 16.5972 16.4028 16.3906C16.541 16.1833 16.6289 15.9125 16.6289 15.5625C16.6289 14.8742 16.2883 13.5295 15.1157 12.3569C13.9395 11.1806 11.9365 10.1875 8.62891 10.1875C5.32129 10.1875 3.31836 11.1806 2.14208 12.3569C0.969463 13.5295 0.628906 14.8742 0.628906 15.5625C0.628906 15.9125 0.716765 16.1833 0.854978 16.3906C0.99267 16.5972 1.17536 16.7333 1.35425 16.8227C1.53266 16.9119 1.70954 16.9559 1.84078 16.9778C1.90669 16.9888 1.96189 16.9943 2.0011 16.9971C2.02073 16.9985 2.03641 16.9992 2.0475 16.9996L2.06063 16.9999L2.06446 17L2.06568 17L2.0661 17H2.06627C2.06634 17 2.06641 17 2.06641 16.875ZM14.011 13.4616C14.7769 14.2276 15.0127 15.051 15.0578 15.4323H2.20041C2.24618 15.0504 2.48125 14.2272 3.24679 13.4616C4.07475 12.6337 5.64972 11.75 8.62891 11.75C11.6068 11.75 13.1831 12.6337 14.011 13.4616Z"
+                            fill="#FCFCFC" stroke="#FCFCFC" strokeWidth="0.25" />
+                        <path
+                            d="M19.0251 5.16632C18.8786 5.01981 18.6799 4.9375 18.4727 4.9375C18.2655 4.9375 18.0667 5.01981 17.9202 5.16632C17.7737 5.31284 17.6914 5.51155 17.6914 5.71875V7.5625H15.8477C15.6405 7.5625 15.4417 7.64481 15.2952 7.79132C15.1487 7.93784 15.0664 8.13655 15.0664 8.34375C15.0664 8.55095 15.1487 8.74966 15.2952 8.89618C15.4417 9.04269 15.6405 9.125 15.8477 9.125H17.6914V10.9688C17.6914 11.176 17.7737 11.3747 17.9202 11.5212C18.0667 11.6677 18.2655 11.75 18.4727 11.75C18.6799 11.75 18.8786 11.6677 19.0251 11.5212C19.1716 11.3747 19.2539 11.176 19.2539 10.9688V9.125H21.0977C21.3049 9.125 21.5036 9.04269 21.6501 8.89618C21.7966 8.74966 21.8789 8.55095 21.8789 8.34375C21.8789 8.13655 21.7966 7.93784 21.6501 7.79132C21.5036 7.64481 21.3049 7.5625 21.0977 7.5625H19.2539V5.71875C19.2539 5.51155 19.1716 5.31284 19.0251 5.16632Z"
+                            fill="#FCFCFC" stroke="#FCFCFC" strokeWidth="0.25" />
+                    </svg>
+                </button>
+            </div>
+            <div class='profil'>
+                <img src='./img/perso5.png' alt="profil" />
+            </div>
+        </div>
     </div>
 
-    <button onclick="toggleRotate()">Rotate</button>
-    <button onclick="colorPicking(colors.purple)">"Purple" button</button>
-    <button onclick="colorPicking(colors.orange)">"Orange" Button</button>
+
+    <div class='slider_display'>
+        <div class='slider_part'>
+            <div class='slider_elements'>
+                <div class='top'>
+                    <div class='left_function'>
+                        <div class='left_function_1'>
+                            <img id="palette_full" src='./img/palette_full.svg' alt='palette_full'>
+                        </div>
+                    </div>
+                    <div class='right_function'>
+                        <div class='right_function_2'>
+                            <img id="sun_empty" src='./img/sun_empty.svg' alt='sun_empty'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='settings_pannel'>
+                    <!-- Palette Component Content -->
+                    <div class="paletteComponent">
+                        <!-- Content goes here -->
+                        <div class="palette">
+                            <div class="palette_settings">
+                                <div class='line1'></div>
+                                <h4>Metallic : </h4>
+                                <span>0 </span><input type="range" min="0" max="1" value="0.5" class="slider"
+                                    id="metallic" step="0.01" /> <span> 1</span>
+                                <p>Your input : <span id="metallicOutput"></span></p>
+                                <div class="line1"></div>
+                                <h4>Roughness : </h4>
+                                <span>0 </span><input type="range" min="0" max="1" value="0.5" class="slider"
+                                    id="roughness" step="0.1" /> <span> 1</span>
+                                <p>Your input : <span id="roughnessOutput"></span></p>
+                                <div class="line1"></div>
+                                <h4>Ambient Occlusion : </h4>
+                                <span>0 </span><input type="range" min="0" max="1" value="0.5" class="slider"
+                                    id="ambientOcclusion" step="0.1" /> <span> 1</span>
+                                <p>Your input : <span id="ambientOcclusionOutput"></span></p>
+                                <div class="line1"></div>
+                                <h4>Emission intensisty</h4>
+                                <span>0 </span><input type="range" min="0" max="1" value="1" class="slider"
+                                    id="emission" step="0.1" />
+                                <span>1</span>
+                                <p>Your input : <span id="EmissionIntensityOutput"></span></p>
+                            </div>
+
+                            <div class="bouton_display">
+                                <div class="button_settings1">
+                                    <button onclick="toggleRotate()">Rotate</button>
+                                    <button onclick="updateCamera('sharpen')">Sharpen</button>
+                                </div>
+                                <div class="button_settings2">
+                                    <button onclick="updateCamera('filterSpecular')">Filter Specular</button>
+                                    <button onclick="updateCamera('bloom')">Bloom</button>
+                                </div>
+                                <div class="button_settings3">
+                                    <button
+                                        onclick="updateCamera('atmosphere') ; setSunVisibility(true)">Atmosphere</button>
+                                    <button
+                                        onclick="updateCamera('gradient') ; setSunVisibility(false)">Gradient</button>
+                                </div>
+                                <div class="button_settings4">
+                                    <button onclick="DoubleSided()">Double sided Button</button>
+                                </div>
+                                <div class="color-picker"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sun Component Content -->
+                    <div class="sunComponent">
+                        <!-- Content goes here -->
+                        <div class="sun_settings">
+                            <div class="line1"></div>
+                            <h4>Sun X Orientation :</h4>
+                            <span>0 </span><input type="range" min="0" max="360" value="240" class="slider"
+                                id="sunXRange" step="5" />
+                            <span> 360</span>
+                            <p>Your input : <span id="sunXOutput"></span></p>
+                            <div class="line1"></div>
+                            <h4>Sun Y Orientation :</h4>
+                            <span>0 </span><input type="range" min="0" max="360" value="0" class="slider" id="sunYRange"
+                                step="5" />
+                            <span> 360</span>
+                            <p>Your input : <span id="sunYOutput"></span></p>
+                            <div class="line1"></div>
+                            <h4>Sun Z Orientation :</h4>
+                            <span>0 </span><input type="range" min="0" max="360" value="0" class="slider" id="sunZRange"
+                                step="5" />
+                            <span> 360</span>
+                            <p>Your input : <span id="sunZOutput"></span></p>
+                            <div class="button_settings">
+                                <button onclick="getSun()">Get Sun</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="canvas-container">
         <!-- CANVAS -->
         <canvas id="display-canvas" oncontextmenu="event.preventDefault()"></canvas>
     </div>
 
+
+
     <!-- LIVELINK SDK -->
     <script src="https://cdn.3dverse.com/legacy/sdk/latest/SDK3DVerse.js"></script>
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script>
+        // Simple example, see optional options for more configuration.
+        const pickr = Pickr.create({
+            el: ".color-picker",
+            theme: "nano", // or 'monolith', or 'nano'
+
+            swatches: [
+                "rgba(7, 192, 99, 0.95)",
+            ],
+
+            components: {
+                // Main components
+                preview: true,
+                hue: true,
+
+                // Input / output Options
+                interaction: {
+                    hex: true,
+                    rgba: true,
+                    input: true,
+                    save: true,
+                },
+            },
+        });
+
+        pickr.on("change", async (...args) => {
+            let color = args[0].toRGBA();
+            let numericValues = color.map((value) => value / 255);
+            this.colorPicked = numericValues;
+            const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))[0]
+            desc(entity)
+        });
+
+        pickr.on("save", (...args) => {
+            let color = args[0].toRGBA();
+            console.log(color);
+            pickr.addSwatch(`rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`);
+        });
+    </script>
 
 </body>
+
 </html>

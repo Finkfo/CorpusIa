@@ -1,30 +1,406 @@
+/* CONFIG */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-    margin: 0;
-  }
-  
-  .canvas-container {
-    width: 75vw;
-    height: 75vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-  }
-  
-  canvas {
-    height: 75vh;
-    width: 75vw;
-    vertical-align: middle;
-  }
-  
-  .button-container {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    bottom: 2rem;
-    left: 2rem;
-  }
-  button {
-    position: relative;
-  }
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* FONTS */
+@font-face {
+  font-family: 'Azo Sans';
+  src: url(./fonts/azo-sans-regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Futura PT Medium ';
+  src: url(./fonts/Futura\ PT\ Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Futura PT Book';
+  src: url(./fonts/futura-pt-book.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Futura PT Light';
+  src: url(./fonts/futura-pt-light.otf) format("opentype");
+}
+
+
+/* SCREEN BAR */
+
+
+/* NAVBAR */
+.navbar_viewer {
+  padding: 15px 14px 5px 40px;
+  display: flex;
+  justify-content: space-between;
+  background-image: url(./img/top-bar.png);
+  background-repeat: no-repeat;
+  z-index: 2;
+  position: relative;
+}
+
+/* LEFT PART */
+.navbar_viewer .LEFT {
+  gap: 20px;
+  display: flex;
+}
+
+
+/* BOUTON HOME */
+.navbar_viewer .home_button button {
+  display: flex;
+  width: 46px;
+  height: 46px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background: var(--Primary-1, #6100FF);
+  border: none;
+}
+
+
+/* BOUTON BACK */
+.navbar_viewer .back_button button{
+  display: flex;
+  width: 161px;
+  height: 46px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 25px;
+  background: var(--Primary-1, #6100FF);
+  border: none;
+}
+
+.navbar_viewer .back_button button h5 {
+  color: var(--Secondary-2, #FCFCFC);
+  font-family: 'Azo Sans';
+  font-size: 20px;
+  margin-top: 5px;
+  line-height: normal;
+}
+
+/* MIDDLE PART */
+
+.navbar_viewer .MIDDLE {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* MODEL NAME */
+.navbar_viewer .model_name {
+  color: var(--Secondary-4, #0F0F0F);
+  font-family: Azo Sans;
+  font-size: 30px;
+  margin-top: 6px;
+  line-height: normal;
+}
+
+
+/* RIGHT PART */
+.navbar_viewer .RIGHT {
+  gap: 20px;
+  display: flex;
+}
+
+/* CONNECTED USERS */
+.navbar_viewer .connected_users {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+/* SHARE BUTTON */
+.navbar_viewer .share_button button{
+  display: flex;
+  padding: 13px 31.002px;
+  height: 46px;
+  justify-content: center;
+  align-items: center;
+  gap: 7.75px;
+  border-radius: 24.22px;
+  background: var(--Primary-1, #6100FF);
+  border: none;
+}
+
+.navbar_viewer .share_button button h5 {
+  color: var(--Secondary-2, #FCFCFC);
+  font-family: 'Azo Sans';
+  font-size: 20px;
+  margin-top: 5px;
+  line-height: normal;
+}
+
+
+/* PROFIL */
+.navbar_viewer .profil {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 46px;
+}
+
+
+/* PALETTE SLIDER */
+.palette_settings .slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 10px;
+  border-radius: 20px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.palette_settings .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--Primary-1, #6100FF);
+  cursor: pointer;
+}
+
+.palette_settings .slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--Primary-1, #6100FF);
+  cursor: pointer;
+}
+
+
+/* PALETTE SETTINGS BUTTON */
+.palette .button_display {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.palette .button_settings1 button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: 0.4s;
+  background-color: #6100FF;
+  color: var(--Secondary-2, #FCFCFC);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Azo Sans';
+  width: 90px;
+  height: 33px;
+}
+
+.palette .button_settings2 button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: 0.4s;
+  background-color: #6100FF;
+  color: var(--Secondary-2, #FCFCFC);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Azo Sans';
+  width: 90px;
+  height: 33px;
+}
+
+.palette .button_settings3 button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: 0.4s;
+  background-color: #6100FF;
+  color: var(--Secondary-2, #FCFCFC);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Azo Sans';
+  width: 90px;
+  height: 33px;
+}
+
+.palette .button_settings4 button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: 0.4s;
+  background-color: #6100FF;
+  color: var(--Secondary-2, #FCFCFC);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Azo Sans';
+  width: 90px;
+  height: 33px;
+}
+
+.palette .button_display button:hover {
+  background-color: #AA8DFA;
+  color: var(--Secondary-2, #FCFCFC);
+}
+
+
+
+
+/* PANNEL */
+.slider_display {
+  display: flex;
+  justify-content: right;
+  overflow: hidden;
+}
+
+.slider_part {
+  display: flex;
+  justify-content: right;
+  z-index: 1;
+  position: relative;
+  padding: 20px;
+}
+
+.slider_part .slider_elements {
+  display: flex;
+  width: 349px;
+  padding: 20px 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #FCFCFC;
+  border-radius: 20px;
+}
+
+.slider_part .top {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+/* SETTINGS SLIDER */
+.slider_part .settings_pannel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.slider_part .settings_pannel .line1 {
+  width: 329px;
+  height: 1px;
+  background: rgba(148, 148, 148, 0.50);
+}
+
+.top button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0%;
+}
+
+
+
+
+
+/* SUN SLIDER */
+.sun_settings .slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 10px;
+  border-radius: 20px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.sun_settings .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--Primary-1, #6100FF);
+  cursor: pointer;
+}
+
+.sun_settings .slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--Primary-1, #6100FF);
+  cursor: pointer;
+}
+
+
+/* SUN SETTINGS BUTTON */
+.sun_settings .button_settings {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sun_settings .button_settings button {
+  transition-duration: 0.4s;
+  background-color: #6100FF;
+  color: var(--Secondary-2, #FCFCFC);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Azo Sans';
+  width: 90px;
+  height: 33px;
+}
+
+.sun_settings .button_settings button:hover {
+  background-color: #AA8DFA;
+  color: var(--Secondary-2, #FCFCFC);
+}
