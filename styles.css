@@ -79,7 +79,6 @@ button {
 }
 
 .slider {
-  -webkit-appearance: none;
   width: 80%;
   height: 10px;
   border-radius: 20px;
@@ -106,4 +105,15 @@ button {
   border-radius: 50%;
   background: var(--Primary-1, #6100FF);
   cursor: pointer;
+}
+#cubeOption{
+  visibility: hidden;
+}
+#dressOption{
+  visibility: hidden;
+  display: grid;
+  align-content: flex-start;
+}
+#watchOption{
+  visibility: hidden;
 }

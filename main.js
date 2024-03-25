@@ -1,5 +1,7 @@
 var rotationOn = false;
-var isDoubleSided = false
+var isDoubleSided = false;
+let sceneUUIDValue = "17fc8919-6b02-4835-a21c-8f67bafb94ca";
+const cubeOption = document.querySelector(".cubeOption");
 
 // Reusable function for setting up sliders
 function setupSlider(sliderId, outputId, onChangeCallback) {
@@ -27,33 +29,64 @@ function setupSlider(sliderId, outputId, onChangeCallback) {
     },
   };
 }
-
-async function setMaterialProperty(propertyName, propertyValue) {
-  const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))[0]
-  entity.setComponent("material", {
-    dataJSON: {
-      ...entity.getComponent("material").dataJSON,
-      [propertyName]: propertyValue,
-    },
-  });
+async function setNewMaterialRefWatch(materialRef){
+  const BraceletPartOne = await SDK3DVerse.engineAPI.findEntitiesByEUID('11cb28ea-5b91-419d-83a8-305010cc6b3f');
+  const BraceletPartTwo = await SDK3DVerse.engineAPI.findEntitiesByEUID('6061dfd6-b97b-4aec-92eb-cd2aa9ea428e');
+  await BraceletPartOne[0].setComponent('material_ref', {value : materialRef});
+  await BraceletPartTwo[0].setComponent('material_ref', {value : materialRef});
 }
+async function setNewMaterialRefDressAll(materialRef){
+  const DressLeftPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('5c4fa5f1-f6ba-441a-a25b-b6fabe99ca38');
+  const DressRightPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('c61acbd7-25f8-450f-a866-8f6fca139242');
+  const DressLeftBackPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('e1a4e3f4-29ae-4fc3-8fe8-facdab939d3d');
+  const DressRightBackPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('6f5c1a72-12f3-4824-a392-a1aba84740eb');
+  await DressLeftPart[0].setComponent('material_ref', {value : materialRef});
+  await DressRightPart[0].setComponent('material_ref', {value : materialRef});
+  await DressLeftBackPart[0].setComponent('material_ref', {value : materialRef});
+  await DressRightBackPart[0].setComponent('material_ref', {value : materialRef});
+}
+async function setNewMaterialRefDressLeftPart(materialRef){
+  const DressLeftPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('5c4fa5f1-f6ba-441a-a25b-b6fabe99ca38');
+  DressLeftPart[0].setComponent('material_ref', {value : materialRef});
+}
+async function setNewMaterialRefDressRightPart(materialRef){
+  const DressRightPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('c61acbd7-25f8-450f-a866-8f6fca139242');
+  DressRightPart[0].setComponent('material_ref', {value : materialRef});
+}
+async function setNewMaterialRefDressLeftBackPart(materimaterialRefl_ref){
+  const DressLeftBackPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('e1a4e3f4-29ae-4fc3-8fe8-facdab939d3d');
+  DressLeftBackPart[0].setComponent('material_ref', {value : materialRef});
+}
+async function setNewMaterialRefDressRightBackPart(materialRef){
+  const DressRightBackPart = await SDK3DVerse.engineAPI.findEntitiesByEUID('6f5c1a72-12f3-4824-a392-a1aba84740eb');
+  DressRightBackPart[0].setComponent('material_ref', {value : materialRef});
+}
+// async function setMaterialProperty(propertyName, propertyValue) {
+//   const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID("62d404e7-2114-4eab-81dd-778cf884e9d4"))[0]
+//   entity.setComponent("material", {
+//     dataJSON: {
+//       ...entity.getComponent("material").dataJSON,
+//       [propertyName]: propertyValue,
+//     },
+//   });
+// }
 
 // Setup each slider using the reusable function
-var metallicSlider = setupSlider("metallic", "metallicOutput", setMaterialProperty);
-var roughnessSlider = setupSlider("roughness", "roughnessOutput",setMaterialProperty);
-var ambientOcclusionSlider = setupSlider("ambientOcclusion","ambientOcclusionOutput",setMaterialProperty);
+// var metallicSlider = setupSlider("metallic", "metallicOutput", setMaterialProperty);
+// var roughnessSlider = setupSlider("roughness", "roughnessOutput",setMaterialProperty);
+// var ambientOcclusionSlider = setupSlider("ambientOcclusion","ambientOcclusionOutput",setMaterialProperty);
 
-var EmissionIntensitySlider = setupSlider(
-  "emission",
-  "EmissionIntensityOutput",
-  setMaterialProperty
-);
+// var EmissionIntensitySlider = setupSlider(
+//   "emission",
+//   "EmissionIntensityOutput",
+//   setMaterialProperty
+// );
 
-var ClearCoatStrengthSlider = setupSlider(
-  "clearCoatStrength",
-  "ClearCoatStrengthOutput",
-  setMaterialProperty
-);
+// var ClearCoatStrengthSlider = setupSlider(
+//   "clearCoatStrength",
+//   "ClearCoatStrengthOutput",
+//   setMaterialProperty
+// );
 
 
 var sunXSlider = setupSlider("sunXRange", "sunXOutput", setSunOrientation);
@@ -140,6 +173,7 @@ async function updateCamera(property) {
             dataJSON: {
               ...camera.getComponent("camera").dataJSON,
               atmosphere: false,
+              grid: false,
             },
           });
     }
@@ -166,7 +200,7 @@ async function updateCamera(property) {
 async function getSun() {
   const sun = (
     await SDK3DVerse.engineAPI.findEntitiesByEUID(
-      "7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"
+      "1d54fc15-4c43-4c2b-bca1-b2d77f86ad3e"
     )
   )[0];
   const { eulerOrientation } = sun.getGlobalTransform();
@@ -174,7 +208,7 @@ async function getSun() {
 }
 
 async function setSunOrientation() {
-  const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
+  const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("1d54fc15-4c43-4c2b-bca1-b2d77f86ad3e"))[0];
   sun.setGlobalTransform({
       eulerOrientation : 
       [
@@ -186,16 +220,47 @@ async function setSunOrientation() {
 }
 
 async function setSunVisibility(isVisible) {
-  const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("7fbb3dc8-6d9d-46e3-92ff-2cd64efb26c1"))[0];
+  const sun = (await SDK3DVerse.engineAPI.findEntitiesByEUID("1d54fc15-4c43-4c2b-bca1-b2d77f86ad3e"))[0];
   sun.setVisibility(isVisible);
 }
 
+async function changeMainScene(){
+  const watchScene = await SDK3DVerse.engineAPI.findEntitiesByEUID('d0e79933-4234-4286-965e-5722d03c7803');
+  const dressScene = await SDK3DVerse.engineAPI.findEntitiesByEUID('dcab5bde-8bf9-4202-b57a-05fdd9fed06c');
+  const cubeScenee = await SDK3DVerse.engineAPI.findEntitiesByEUID('14d08a2c-59d5-408f-a254-efbdaee2b10e');
+  let id = document.querySelector("#choixVariable").options[document.querySelector("#choixVariable").selectedIndex].id;
+  if (id == "cube"){
+    document.querySelector("#cubeOption").style.visibility = "visible";
+    document.querySelector("#dressOption").style.visibility = "hidden";
+    document.querySelector("#watchOption").style.visibility = "hidden";
+    watchScene[0].setVisibility(false);
+    dressScene[0].setVisibility(false);
+    cubeScenee[0].setVisibility(true);
+    
+  }
+  else if (id == "watch"){
+    document.querySelector("#watchOption").style.visibility = "visible";
+    document.querySelector("#dressOption").style.visibility = "hidden";
+    document.querySelector("#cubeOption").style.visibility = "hidden";
+    watchScene[0].setVisibility(true);
+    dressScene[0].setVisibility(false);
+    cubeScenee[0].setVisibility(false);
+  }
+  else if(id == "dress"){
+    document.querySelector("#dressOption").style.visibility = "visible";
+    document.querySelector("#watchOption").style.visibility = "hidden";
+    document.querySelector("#cubeOption").style.visibility = "hidden";
+    watchScene[0].setVisibility(false);
+    dressScene[0].setVisibility(true);
+    cubeScenee[0].setVisibility(false);
+  }
+}
 
 // Initialization
 async function InitApp() {
   await SDK3DVerse.joinOrStartSession({
     userToken: "public_xhZv-SrH0o7c9Xhz",
-    sceneUUID: "17fc8919-6b02-4835-a21c-8f67bafb94ca",
+    sceneUUID: sceneUUIDValue,
     canvas: document.getElementById("display-canvas"),
     viewportProperties: {
       defaultControllerType: SDK3DVerse.controller_type.orbit,
